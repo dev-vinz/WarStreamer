@@ -1,0 +1,23 @@
+<div class="ws-container">
+  <div class="ws-404-content">
+    <div class="ws-content">
+      <!-- <h1>{{ "shared.error404.title" | transloco }}</h1> -->
+      <h1>404</h1>
+      <div>
+        <!-- {{ "shared.error404.description" | transloco }} -->
+        Il semblerait qu'après avoir détruit tous les murs, la reine se soit
+        endormie. Revenez en arrière pour la réveiller...
+      </div>
+      <a class="ws-btn ws-btn-shiny ws-btn-primary" [routerLink]="previousUrl">
+        <!-- <i class="fa-regular fa-bell fa-shake"></i> -->
+        <i-bs name="bell"></i-bs>
+        <!-- <span>{{ "shared.error404.button" | transloco }}</span> -->
+        <span>Réveiller la reine</span>
+      </a>
+    </div>
+    <img
+      src="assets/images/goblin-queen-not-found.png"
+      class="ws-not-found-image"
+    />
+  </div>
+</div>
