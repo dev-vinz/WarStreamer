@@ -1,0 +1,114 @@
+<header>
+  <nav class="ws-navbar navbar navbar-expand-lg">
+    <div class="ws-navbar-container">
+      <a class="ws-navbar-brand" routerLink="" (click)="closeMenu()">
+        <img
+          src="/favicon.ico"
+          alt="Logo"
+          width="30"
+          height="30"
+          class="d-inline-block align-text-top"
+        />
+        <span>WarStreamer</span>
+      </a>
+      <div class="ws-collapse-btn" (click)="toggleMenu()">
+        <i-bs [name]="isMenuOpen ? 'x-lg' : 'list'"></i-bs>
+      </div>
+      <div
+        class="ws-navbar-collapse"
+        [ngClass]="{ 'ws-navbar-open': isMenuOpen }"
+      >
+        <ul *ngIf="isAuthenticated" class="ws-navbar-nav">
+          <li class="ws-nav-item">
+            <a class="ws-nav-link" routerLink="dashboard" (click)="closeMenu()">
+              {{ "shared.header.navbar.dashboard" | transloco }}
+            </a>
+          </li>
+          <li class="ws-nav-item">
+            <a class="ws-nav-link" routerLink="overlays" (click)="closeMenu()">
+              {{ "shared.header.navbar.overlays" | transloco }}
+            </a>
+          </li>
+        </ul>
+        <div class="dropdown ws-navbar-nav ws-lang-selector">
+          <a
+            class="ws-nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ activeLanguage?.flagEmoji }}
+            {{ activeLanguage?.shortcutValue }}
+          </a>
+          <ul class="dropdown-menu">
+            <li *ngFor="let lang of languages" class="ws-dropdown-item">
+              <div
+                class="d-flex gap-3"
+                (click)="changeLanguage(lang.shortcutValue)"
+              >
+                <span>{{ lang.flagEmoji }}</span>
+                <span>{{ lang.displayValue }}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div *ngIf="isAuthenticated" class="dropdown">
+          <a
+            class="dropdown-toggle ws-nav-link"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img [src]="avatarUrl" alt="Avatar" />
+            <span class="ws-profile-username">{{ username }}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <a
+                class="ws-dropdown-item"
+                routerLink="profile"
+                (click)="closeMenu()"
+              >
+                {{ "shared.header.profile.profile" | transloco }}
+              </a>
+            </li>
+            <li>
+              <a class="ws-dropdown-item" href="#" (click)="closeMenu()">
+                {{ "shared.header.profile.settings" | transloco }}
+              </a>
+            </li>
+            <li>
+              <a
+                class="ws-dropdown-item"
+                routerLink="team-logos"
+                (click)="closeMenu()"
+              >
+                {{ "shared.header.profile.team-logos" | transloco }}
+              </a>
+            </li>
+            <li><hr class="ws-dropdown-divider" /></li>
+            <li>
+              <button
+                class="ws-dropdown-btn ws-dropdown-item"
+                (click)="processLogout()"
+              >
+                {{ "shared.header.profile.logout" | transloco }}
+              </button>
+            </li>
+          </ul>
+        </div>
+        <button
+          *ngIf="!isAuthenticated"
+          class="ws-nav-btn ws-nav-link"
+          (click)="processLogin()"
+        >
+          {{ "shared.header.login" | transloco }}
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>

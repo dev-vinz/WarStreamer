@@ -1,0 +1,27 @@
+#ws-page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#ws-page-content {
+  padding-bottom: 13rem;
+}
+
+#ws-footer {
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+}
+
+@media screen and (max-width: 991px) {
+  #ws-page-content {
+    padding-bottom: 19rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #ws-page-content {
+    padding-bottom: 32rem;
+  }
+}
