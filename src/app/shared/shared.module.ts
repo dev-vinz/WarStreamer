@@ -6,10 +6,18 @@ import { TranslocoModule, provideTranslocoScope } from '@ngneat/transloco';
 
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
 
+import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    ScrollToTopComponent,
+    NotFoundComponent,
+  ],
   providers: [provideTranslocoScope({ scope: 'shared', alias: 't' })],
   imports: [
     CommonModule,
@@ -17,6 +25,11 @@ import { HeaderComponent } from './header/header.component';
     RouterModule,
     TranslocoModule,
   ],
-  exports: [HeaderComponent],
+  exports: [
+    FooterComponent,
+    HeaderComponent,
+    NotFoundComponent,
+    ScrollToTopComponent,
+  ],
 })
 export class SharedModule {}

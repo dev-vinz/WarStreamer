@@ -81,6 +81,7 @@ export class AuthService {
     const state = params['state'];
 
     await this._exchangeCodeForToken(code, state);
+    await this.fetchUserProfile();
   }
 
   public login(): void {
@@ -140,7 +141,7 @@ export class AuthService {
   }
 
   public get isAuthenticated(): boolean {
-    return localStorage.getItem(environment.localStorage.tokenKey) !== null;
+    return this.accessToken !== '' && this.discordUser !== undefined;
   }
 
   public get discordUser(): DiscordUser | undefined {
@@ -181,7 +182,6 @@ export class AuthService {
       )) as AuthToken;
 
       localStorage.setItem(environment.localStorage.tokenKey, authToken.token);
-      this._router.navigate(['/dashboard']);
     } catch (err: any) {
       console.error(err);
       window.alert('TODO: Something went wrong');
