@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
+import { CardComponent } from './components/card/card.component';
 import { DashboardComponent } from './dashboard.component';
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [CardComponent, DashboardComponent],
   imports: [CommonModule, DashboardRoutingModule],
   exports: [],
 })

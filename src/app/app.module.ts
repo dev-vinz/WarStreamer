@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 
 import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 
+import { DashboardModule } from './features/dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
 import { TranslocoRootModule } from './transloco-root.module';
 
@@ -17,6 +18,7 @@ import { TranslocoRootModule } from './transloco-root.module';
   imports: [
     AppRoutingModule,
     BrowserModule,
+    DashboardModule,
     NgxBootstrapIconsModule.pick(allIcons),
     OAuthModule.forRoot({
       resourceServer: {
