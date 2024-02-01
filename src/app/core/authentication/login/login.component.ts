@@ -1,5 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+  inject,
+} from '@angular/core';
+
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslocoService } from '@ngneat/transloco';
 
 import { firstValueFrom } from 'rxjs';
@@ -13,6 +21,16 @@ import { WarStreamerService } from './../../api/warstreamer.service';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
+  |*                          PROPERTIES                         *|
+  \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+  private _isLoading = false;
+  private _modalService = inject(NgbModal);
+
+  @ViewChild('loginFailed')
+  public errorModal!: TemplateRef<any>;
+
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                        CONSTRUCTORS                         *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -37,11 +55,14 @@ export class LoginComponent implements OnInit {
         return;
       }
 
+      this._isLoading = true;
+
       // Handle callback
       const isLoggedIn = await this._authService.handleDiscordCallback();
 
       if (!isLoggedIn) {
-        return;
+        this._isLoading = false;
+        return this._openModal();
       }
 
       // Once user is authenticated, change the language to the user's preferred language
@@ -49,6 +70,8 @@ export class LoginComponent implements OnInit {
       const lang = await this._apiService.languages.get(langId).execute();
 
       this._translocoService.setActiveLang(lang.shortcutValue.toLowerCase());
+
+      this._isLoading = false;
     }
 
     // Redirect to dashboard
@@ -61,5 +84,21 @@ export class LoginComponent implements OnInit {
 
   public processLogin(): void {
     this._authService.login();
+  }
+
+  /* * * * * * * * * * * * * * * *\
+  |*           GETTERS           *|
+  \* * * * * * * * * * * * * * * */
+
+  public get isLoading(): boolean {
+    return this._isLoading;
+  }
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
+  |*                           PRIVATE                           *|
+  \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+  private _openModal(): void {
+    this._modalService.open(this.errorModal, { centered: true });
   }
 }

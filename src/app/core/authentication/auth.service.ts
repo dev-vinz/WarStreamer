@@ -66,8 +66,11 @@ export class AuthService {
       );
     } catch (err: any) {
       if (err.status === 401) {
-        await this.refresh();
-        await this.fetchDiscordUserProfile();
+        const refreshed = await this.refresh();
+
+        if (refreshed) {
+          await this.fetchDiscordUserProfile();
+        }
       }
 
       return;
@@ -114,7 +117,7 @@ export class AuthService {
     }
   }
 
-  public async refresh(): Promise<void> {
+  public async refresh(): Promise<boolean> {
     try {
       const authToken = (await firstValueFrom(
         this._http.post(`${environment.apiUrl}/auth/refresh`, null, {
@@ -126,14 +129,15 @@ export class AuthService {
       )) as AuthToken;
 
       localStorage.setItem(environment.localStorage.tokenKey, authToken.token);
+
+      return true;
     } catch (err: any) {
       if (err.status === 401) {
         this._oauthService.logOut();
         this._clearLocalStorage();
-
-        //! TODO: Look how to cancel the loop between the requests
-        // this._oauthService.initCodeFlow();
       }
+
+      return false;
     }
   }
 
@@ -146,7 +150,11 @@ export class AuthService {
   }
 
   public get isAuthenticated(): boolean {
-    return this.accessToken !== '' && this.discordUser !== undefined;
+    return (
+      this.accessToken !== '' &&
+      this.discordUser !== undefined &&
+      this.preferredLanguage !== ''
+    );
   }
 
   public get discordUser(): DiscordUser | undefined {
@@ -189,8 +197,6 @@ export class AuthService {
       localStorage.setItem(environment.localStorage.tokenKey, authToken.token);
       return true;
     } catch (err: any) {
-      console.error(err);
-      window.alert('TODO: Something went wrong');
       return false;
     }
   }
@@ -209,8 +215,11 @@ export class AuthService {
       localStorage.setItem(environment.localStorage.languageKey, language.id);
     } catch (err: any) {
       if (err.status === 401) {
-        await this.refresh();
-        await this._fetchPreferredLanguage();
+        const isRefreshed = await this.refresh();
+
+        if (isRefreshed) {
+          await this._fetchPreferredLanguage();
+        }
       }
 
       return;
