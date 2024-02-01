@@ -110,7 +110,7 @@ export class AuthService {
       if (isLoggedOut) {
         this._oauthService.logOut();
         this._clearLocalStorage();
-        this._router.navigate(['/']);
+        this._router.navigate(['/login']);
       }
     } catch (err: any) {
       console.error(err);

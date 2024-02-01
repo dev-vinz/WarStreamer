@@ -8,6 +8,13 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 const routes: Routes = [
   {
+    path: '',
+    loadChildren: () =>
+      import('./features/home/home-routing.module').then(
+        (m) => m.HomeRoutingModule
+      ),
+  },
+  {
     path: 'login',
     component: LoginComponent,
   },
