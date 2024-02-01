@@ -1,0 +1,27 @@
+.ws-login {
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  max-width: 550px;
+
+  margin: 1rem auto 5rem auto;
+
+  text-align: center;
+
+  .ws-img {
+    width: 85%;
+  }
+
+  .ws-title {
+    font-weight: 600;
+  }
+
+  .ws-description {
+    margin-bottom: 0;
+
+    color: rgba(var(--textColorRGB), 0.8);
+  }
+}

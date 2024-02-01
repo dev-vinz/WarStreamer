@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { OAuthService } from 'angular-oauth2-oidc';
 import { firstValueFrom } from 'rxjs';
@@ -74,14 +74,19 @@ export class AuthService {
     }
   }
 
-  public async handleDiscordCallback(): Promise<void> {
+  public async handleDiscordCallback(): Promise<boolean> {
     const params = await firstValueFrom(this._route.queryParams);
 
     const code = params['code'];
     const state = params['state'];
 
-    await this._exchangeCodeForToken(code, state);
-    await this.fetchUserProfile();
+    const result = await this._exchangeCodeForToken(code, state);
+
+    if (result) {
+      await this.fetchUserProfile();
+    }
+
+    return result;
   }
 
   public login(): void {
@@ -167,7 +172,7 @@ export class AuthService {
   private async _exchangeCodeForToken(
     code: string,
     state: string
-  ): Promise<void> {
+  ): Promise<boolean> {
     try {
       const body = {
         code: code,
@@ -182,9 +187,11 @@ export class AuthService {
       )) as AuthToken;
 
       localStorage.setItem(environment.localStorage.tokenKey, authToken.token);
+      return true;
     } catch (err: any) {
       console.error(err);
       window.alert('TODO: Something went wrong');
+      return false;
     }
   }
 
