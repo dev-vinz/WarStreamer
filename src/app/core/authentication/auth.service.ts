@@ -10,6 +10,8 @@ import { DiscordUser } from './models/DiscordUser';
 
 import { environment } from '../../../environments/environment';
 
+import moment from 'moment';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -165,6 +167,12 @@ export class AuthService {
     ) as DiscordUser;
   }
 
+  public get lastAccess(): moment.Moment {
+    return moment.utc(
+      localStorage.getItem(environment.localStorage.lastAccessKey) ?? ''
+    );
+  }
+
   public get preferredLanguage(): string {
     return localStorage.getItem(environment.localStorage.languageKey) ?? '';
   }
@@ -172,6 +180,13 @@ export class AuthService {
   /* * * * * * * * * * * * * * * *\
   |*           SETTERS           *|
   \* * * * * * * * * * * * * * * */
+
+  public set lastAccess(date: moment.Moment) {
+    localStorage.setItem(
+      environment.localStorage.lastAccessKey,
+      date.toISOString()
+    );
+  }
 
   public set preferredLanguage(id: string) {
     localStorage.setItem(environment.localStorage.languageKey, id);
@@ -182,9 +197,10 @@ export class AuthService {
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
   private _clearLocalStorage(): void {
+    localStorage.removeItem(environment.localStorage.languageKey);
+    localStorage.removeItem(environment.localStorage.lastAccessKey);
     localStorage.removeItem(environment.localStorage.tokenKey);
     localStorage.removeItem(environment.localStorage.userKey);
-    localStorage.removeItem(environment.localStorage.languageKey);
   }
 
   private async _exchangeCodeForToken(

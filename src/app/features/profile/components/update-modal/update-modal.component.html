@@ -9,8 +9,16 @@
   <div class="ws-body">
     <div class="mb-3">
       <label class="form-label">Langue par défaut</label>
-      <select class="form-select form-select-sm" formControlName="language">
-        <option *ngFor="let lang of languages" [value]="lang.id">
+      <select
+        class="form-select form-select-sm"
+        formControlName="language"
+        data-bs-theme="dark"
+      >
+        <option
+          *ngFor="let lang of languages"
+          [value]="lang.id"
+          class="ws-form-option"
+        >
           {{ lang.flagEmoji }} {{ lang.displayValue }}
         </option>
       </select>
@@ -22,6 +30,7 @@
         role="switch"
         id="newsletter"
         formControlName="newsletter"
+        data-bs-theme="dark"
       />
       <label class="form-check-label" for="newsletter">
         Recevoir la newsletter
