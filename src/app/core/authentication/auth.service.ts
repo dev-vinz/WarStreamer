@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { OAuthService } from 'angular-oauth2-oidc';
 import { firstValueFrom } from 'rxjs';
@@ -14,10 +14,6 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
-  |*                          CONSTANTS                          *|
-  \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                        CONSTRUCTORS                         *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -43,6 +39,12 @@ export class AuthService {
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                           PUBLIC                            *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+  public disconnect(): void {
+    this._oauthService.logOut();
+    this._clearLocalStorage();
+    this._router.navigate(['/login']);
+  }
 
   public async fetchUserProfile(): Promise<void> {
     await this.fetchDiscordUserProfile();
@@ -165,6 +167,14 @@ export class AuthService {
 
   public get preferredLanguage(): string {
     return localStorage.getItem(environment.localStorage.languageKey) ?? '';
+  }
+
+  /* * * * * * * * * * * * * * * *\
+  |*           SETTERS           *|
+  \* * * * * * * * * * * * * * * */
+
+  public set preferredLanguage(id: string) {
+    localStorage.setItem(environment.localStorage.languageKey, id);
   }
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\

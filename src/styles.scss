@@ -16,6 +16,9 @@
   --successColorRGB: 34, 139, 34;
   --dangerColorRGB: 220, 20, 60;
 
+  // Hue version colors
+  --primaryColorHue: 46;
+
   /* Full colors */
   --bgColor: rgba(var(--bgColorRGB), 1);
   --bgColorLight: rgba(var(--bgColorLightRGB), 1);
@@ -43,6 +46,8 @@ body {
 
   // Custom container
   .ws-container {
+    position: relative;
+
     @media screen and (min-width: 992px) {
       max-width: var(--maxContainerWidth);
 

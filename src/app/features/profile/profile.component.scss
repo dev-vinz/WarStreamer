@@ -1,0 +1,92 @@
+.ws-dots {
+  position: absolute;
+  top: 0;
+  right: 2.5rem;
+
+  z-index: 1;
+
+  .ws-dots-btn {
+    color: var(--textColor);
+    background: none;
+
+    border: none;
+  }
+
+  .dropdown-menu {
+    padding-top: 0;
+    padding-bottom: 0;
+
+    background-color: var(--bgColorLight);
+
+    .ws-dropdown-item {
+      display: block;
+
+      padding: 0.25rem 0.75rem;
+      margin: 0.25rem;
+
+      color: rgba(var(--textColorRGB, 0.8));
+
+      border-radius: var(--bs-dropdown-inner-border-radius);
+
+      font-size: 1rem;
+
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+
+      transition: background-color 0.1s ease;
+
+      &.ws-dropdown-btn {
+        width: calc(100% - 0.5rem);
+
+        background-color: transparent;
+        border: none;
+
+        text-align: left;
+      }
+
+      &:hover {
+        background-color: var(--bgColor);
+      }
+    }
+  }
+}
+
+.ws-parallax {
+  height: 300px;
+
+  margin-block: 2rem;
+
+  background-image: url("/assets/images/profile-parallax.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  border-top: 8px solid var(--primaryColor);
+  border-bottom: 8px solid var(--primaryColor);
+}
+
+.ws-btn-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  a {
+    flex-grow: 1;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .ws-dots {
+    top: 1rem;
+    right: 2rem;
+
+    .ws-dots-btn {
+      color: var(--bgColor);
+    }
+  }
+
+  .ws-parallax {
+    background-attachment: scroll;
+  }
+}

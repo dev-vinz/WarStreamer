@@ -1,0 +1,37 @@
+<!-- TODO: Language -->
+<form class="ws-modal" [formGroup]="userForm" (ngSubmit)="update()">
+  <div class="ws-header">
+    <h4 class="ws-title">Modification du profil</h4>
+    <button class="ws-close" type="button" (click)="modal.dismiss()">
+      <i-bs name="x-lg"></i-bs>
+    </button>
+  </div>
+  <div class="ws-body">
+    <div class="mb-3">
+      <label class="form-label">Langue par défaut</label>
+      <select class="form-select form-select-sm" formControlName="language">
+        <option *ngFor="let lang of languages" [value]="lang.id">
+          {{ lang.flagEmoji }} {{ lang.displayValue }}
+        </option>
+      </select>
+    </div>
+    <div class="form-check form-switch mb-3">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="newsletter"
+        formControlName="newsletter"
+      />
+      <label class="form-check-label" for="newsletter">
+        Recevoir la newsletter
+      </label>
+    </div>
+  </div>
+  <div class="ws-footer">
+    <button class="ws-btn" type="button" (click)="modal.close()">
+      Annuler
+    </button>
+    <button class="ws-btn ws-btn-success" type="submit">Modifier</button>
+  </div>
+</form>

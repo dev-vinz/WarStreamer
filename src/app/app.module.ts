@@ -12,6 +12,8 @@ import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 
 import { CoreModule } from './core/core.module';
 import { DashboardModule } from './features/dashboard/dashboard.module';
+import { HomeModule } from './features/home/home.module';
+import { ProfileModule } from './features/profile/profile.module';
 import { SharedModule } from './shared/shared.module';
 import { TranslocoRootModule } from './transloco-root.module';
 
@@ -22,6 +24,7 @@ import { TranslocoRootModule } from './transloco-root.module';
     BrowserModule,
     CoreModule,
     DashboardModule,
+    HomeModule,
     NgbModule,
     NgxBootstrapIconsModule.pick(allIcons),
     OAuthModule.forRoot({
@@ -30,6 +33,7 @@ import { TranslocoRootModule } from './transloco-root.module';
         sendAccessToken: true,
       },
     }),
+    ProfileModule,
     SharedModule,
     HttpClientModule,
     TranslocoRootModule,

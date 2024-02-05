@@ -24,8 +24,8 @@ export class HeaderComponent implements OnInit {
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
   constructor(
-    private _authService: AuthService,
     private _apiService: WarStreamerService,
+    private _authService: AuthService,
     private _translocoService: TranslocoService
   ) {}
 

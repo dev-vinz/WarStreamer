@@ -1,0 +1,38 @@
+<!-- TODO: Language + Router -->
+<div class="ws-container">
+  <div class="ws-dots">
+    <div class="dropdown">
+      <button class="ws-dots-btn" data-bs-toggle="dropdown">
+        <i-bs name="three-dots-vertical" width="25" height="25"></i-bs>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+          <button class="ws-dropdown-item ws-dropdown-btn" (click)="update()">
+            Modifier
+          </button>
+        </li>
+        <li>
+          <button class="ws-dropdown-item ws-dropdown-btn" (click)="delete()">
+            Supprimer
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <app-details
+    *ngIf="!loading"
+    [premiumLevel]="user.tierLevel"
+    [defaultLang]="defaultLang"
+    [newsletter]="user.newsLetter"
+  ></app-details>
+  <div class="ws-parallax"></div>
+  <h3>Comptes enregistrés</h3>
+  <app-accounts class="mt-3"></app-accounts>
+  <div class="ws-parallax"></div>
+  <h3>Autres paramètres</h3>
+  <div class="ws-btn-container mt-3">
+    <a class="ws-btn ws-btn-shiny" routerLink="">Gestion des équipes</a>
+    <a class="ws-btn ws-btn-shiny" routerLink="">Gestion des images</a>
+    <a class="ws-btn ws-btn-shiny" routerLink="">Configuration de l'overlay</a>
+  </div>
+</div>

@@ -1,14 +1,40 @@
 <!-- TODO: Language -->
-<div class="ws-login">
-  <img src="assets/images/login-wizard.png" alt="Login image" class="ws-img" />
-  <h4 class="ws-title">Bienvenue sur WarStreamer !</h4>
-  <p class="ws-description">
-    Vous devez vous connecter avec votre compte Discord pour accéder aux
-    différentes fonctionnalités.
-  </p>
-  <button class="ws-btn ws-btn-primary" (click)="processLogin()">
-    Se connecter avec Discord
-  </button>
+<div class="ws-container">
+  <div class="ws-login">
+    <img
+      src="assets/images/login-wizard.png"
+      alt="Login image"
+      class="ws-img"
+    />
+    <h4 class="ws-title">Bienvenue sur WarStreamer !</h4>
+    <p class="ws-description">
+      Vous devez vous connecter avec votre compte Discord pour accéder aux
+      différentes fonctionnalités.
+    </p>
+    <button class="ws-btn ws-btn-primary" (click)="processLogin()">
+      Se connecter avec Discord
+    </button>
+  </div>
+
+  <ng-template #loginFailed let-modal>
+    <div class="ws-modal">
+      <div class="ws-header">
+        <h4 class="ws-title">Oups, une erreur s'est produite !</h4>
+        <button class="ws-close" (click)="modal.dismiss()">
+          <i-bs name="x-lg"></i-bs>
+        </button>
+      </div>
+      <div class="ws-body">
+        Une erreur s'est produite lors de la connexion avec Discord. Actualisez
+        la page puis réessayez.
+      </div>
+      <div class="ws-footer">
+        <button class="ws-btn ws-btn-danger" (click)="modal.close()">
+          Fermer
+        </button>
+      </div>
+    </div>
+  </ng-template>
 </div>
 
 <div class="ws-loading" [ngClass]="{ 'd-none': !isLoading }">
@@ -17,23 +43,3 @@
     <div></div>
   </div>
 </div>
-
-<ng-template #loginFailed let-modal>
-  <div class="ws-modal">
-    <div class="ws-header">
-      <h4 class="ws-title">Oups, une erreur s'est produite !</h4>
-      <button class="ws-close" (click)="modal.dismiss()">
-        <i-bs name="x-lg"></i-bs>
-      </button>
-    </div>
-    <div class="ws-body">
-      Une erreur s'est produite lors de la connexion avec Discord. Actualisez la
-      page puis réessayez.
-    </div>
-    <div class="ws-footer">
-      <button class="ws-btn ws-btn-danger" (click)="modal.close()">
-        Fermer
-      </button>
-    </div>
-  </div>
-</ng-template>
