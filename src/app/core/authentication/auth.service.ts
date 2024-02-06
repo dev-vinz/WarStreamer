@@ -48,11 +48,6 @@ export class AuthService {
     this._router.navigate(['/login']);
   }
 
-  public async fetchUserProfile(): Promise<void> {
-    await this.fetchDiscordUserProfile();
-    await this._fetchPreferredLanguage();
-  }
-
   public async fetchDiscordUserProfile(): Promise<void> {
     try {
       const discordUser = (await firstValueFrom(
@@ -69,15 +64,7 @@ export class AuthService {
         JSON.stringify(discordUser)
       );
     } catch (err: any) {
-      if (err.status === 401) {
-        const refreshed = await this.refresh();
-
-        if (refreshed) {
-          await this.fetchDiscordUserProfile();
-        }
-      }
-
-      return;
+      localStorage.removeItem(environment.localStorage.userKey);
     }
   }
 
@@ -90,7 +77,7 @@ export class AuthService {
     const result = await this._exchangeCodeForToken(code, state);
 
     if (result) {
-      await this.fetchUserProfile();
+      await this._fetchUserProfile();
     }
 
     return result;
@@ -136,10 +123,7 @@ export class AuthService {
 
       return true;
     } catch (err: any) {
-      if (err.status === 401) {
-        this._oauthService.logOut();
-        this._clearLocalStorage();
-      }
+      localStorage.removeItem(environment.localStorage.tokenKey);
 
       return false;
     }
@@ -240,16 +224,13 @@ export class AuthService {
 
       localStorage.setItem(environment.localStorage.languageKey, language.id);
     } catch (err: any) {
-      if (err.status === 401) {
-        const isRefreshed = await this.refresh();
-
-        if (isRefreshed) {
-          await this._fetchPreferredLanguage();
-        }
-      }
-
-      return;
+      localStorage.removeItem(environment.localStorage.languageKey);
     }
+  }
+
+  private async _fetchUserProfile(): Promise<void> {
+    await this.fetchDiscordUserProfile();
+    await this._fetchPreferredLanguage();
   }
 
   /* * * * * * * * * * * * * * * *\

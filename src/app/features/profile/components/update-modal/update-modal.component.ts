@@ -58,6 +58,8 @@ export class UpdateModalComponent implements OnInit {
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
   public async update(): Promise<void> {
+    this.modal.close(this.user);
+
     this.user.newsLetter = this._userForm.value.newsletter;
     this.user.languageId = this._userForm.value.language;
 
@@ -67,8 +69,6 @@ export class UpdateModalComponent implements OnInit {
 
     this._authService.preferredLanguage = lang.id;
     this._translocoService.setActiveLang(lang.shortcutValue);
-
-    this.modal.close(this.user);
   }
 
   /* * * * * * * * * * * * * * * *\

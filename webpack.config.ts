@@ -5,7 +5,6 @@ config();
 
 module.exports = {
   plugins: [
-    new EnvironmentPlugin(['ACCESS_TOKEN_VALIDITY']),
     new EnvironmentPlugin(['API_URL_DEV']),
     new EnvironmentPlugin(['API_URL_PROD']),
     new EnvironmentPlugin(['API_ISSUER']),

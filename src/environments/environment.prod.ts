@@ -2,7 +2,6 @@ export const environment = {
   production: true,
   apiUrl: process.env['API_URL_PROD'] as string,
   authentication: {
-    accessTokenValidity: process.env['ACCESS_TOKEN_VALIDITY'] as string,
     apiIssuer: process.env['API_ISSUER'] as string,
     discordAppId: process.env['DISCORD_APP_ID'] as string,
   },
