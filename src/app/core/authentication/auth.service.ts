@@ -64,7 +64,8 @@ export class AuthService {
         JSON.stringify(discordUser)
       );
     } catch (err: any) {
-      localStorage.removeItem(environment.localStorage.userKey);
+      console.error('Error while fetching user profile', err);
+      // localStorage.removeItem(environment.localStorage.userKey);
     }
   }
 
@@ -104,7 +105,7 @@ export class AuthService {
         this._router.navigate(['/login']);
       }
     } catch (err: any) {
-      console.error(err);
+      console.error('Error while logging out', err);
     }
   }
 
@@ -123,7 +124,8 @@ export class AuthService {
 
       return true;
     } catch (err: any) {
-      localStorage.removeItem(environment.localStorage.tokenKey);
+      console.error('Error while refreshing token', err);
+      // localStorage.removeItem(environment.localStorage.tokenKey);
 
       return false;
     }
@@ -224,7 +226,8 @@ export class AuthService {
 
       localStorage.setItem(environment.localStorage.languageKey, language.id);
     } catch (err: any) {
-      localStorage.removeItem(environment.localStorage.languageKey);
+      console.error('Error while fetching preferred language', err);
+      // localStorage.removeItem(environment.localStorage.languageKey);
     }
   }
 
