@@ -58,12 +58,12 @@ export class UpdateModalComponent implements OnInit {
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
   public async update(): Promise<void> {
-    this.modal.close(this.user);
-
     this.user.newsLetter = this._userForm.value.newsletter;
     this.user.languageId = this._userForm.value.language;
 
     await this._apiService.user.update(this.user).execute();
+
+    this.modal.close(this.user);
 
     const lang = this.languages.find((l) => l.id === this.user.languageId)!;
 
