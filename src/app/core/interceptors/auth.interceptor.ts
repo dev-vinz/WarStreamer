@@ -110,8 +110,8 @@ export class AuthInterceptor implements HttpInterceptor {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === 401) {
-            // Sleep 1 second
-            return this._sleep(1000).pipe(
+            // Sleep 5 seconds
+            return this._sleep(5000).pipe(
               switchMap(() => {
                 // Retry the request
                 return this._retryRequest(request, next);

@@ -91,7 +91,7 @@ export class AccountDetailComponent implements OnInit {
   \* * * * * * * * * * * * * * * */
 
   public get isTouchEnabled(): boolean {
-    return this._deviceService.isTouchEnabled;
+    return this._deviceService.isMobile || this._deviceService.isTablet;
   }
 
   public get name(): string {
