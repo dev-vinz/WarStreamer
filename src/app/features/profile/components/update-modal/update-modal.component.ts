@@ -68,7 +68,7 @@ export class UpdateModalComponent implements OnInit {
     const lang = this.languages.find((l) => l.id === this.user.languageId)!;
 
     this._authService.preferredLanguage = lang.id;
-    this._translocoService.setActiveLang(lang.shortcutValue);
+    this._translocoService.setActiveLang(lang.shortcutValue.toLowerCase());
   }
 
   /* * * * * * * * * * * * * * * *\

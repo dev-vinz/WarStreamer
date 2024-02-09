@@ -1,35 +1,35 @@
 <!-- TODO: Language -->
-<div class="ws-details">
+<div class="ws-details" [class.placeholder-glow]="loading">
   <div class="ws-rectangle"></div>
-  <div class="ws-header">
+  <div class="ws-header" [class.placeholder]="loading">
     <div class="ws-img-box">
       <img [src]="avatarUrl" alt="avatar" />
     </div>
   </div>
-  <div class="ws-content">
-    <div class="ws-title mb-5">
+  <div class="ws-content" [class.placeholder-glow]="loading">
+    <div class="ws-title mb-5" [class.placeholder]="loading">
       <h2 class="h1">{{ globalName }}</h2>
       <span>{{ id }}</span>
     </div>
     <div class="ws-description">
-      <ul class="list-group">
-        <li class="list-group-item">
+      <ul class="list-group" [class.placeholder-glow]="loading">
+        <li class="list-group-item" [class.placeholder]="loading">
           <div class="ws-key col-5">Nom d'utilisateur</div>
           <div class="ws-value col">{{ username }}</div>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item" [class.placeholder]="loading">
           <div class="ws-key col-5">Adresse email</div>
           <div class="ws-value col">{{ email }}</div>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item" [class.placeholder]="loading">
           <div class="ws-key col-5">Niveau d'abonnement</div>
           <div class="ws-value col">{{ premiumLevel }}</div>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item" [class.placeholder]="loading">
           <div class="ws-key col-5">Langue par défaut</div>
           <div class="ws-value col">{{ defaultLang }}</div>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item" [class.placeholder]="loading">
           <div class="ws-key col-5">Newsletter</div>
           <div class="ws-value col">
             {{ newsletter ? "Activée" : "Désactivée" }}

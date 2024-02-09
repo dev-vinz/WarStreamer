@@ -1,3 +1,18 @@
-<div class="ws-temp">
-  <p>accounts works!</p>
+<!-- TODO: Language -->
+<div class="ws-acc-container">
+  <app-account-detail
+    *ngFor="let account of accounts"
+    [account]="account"
+    (accountDeleted)="removeAccount($event)"
+    class="ws-card"
+  ></app-account-detail>
+</div>
+
+<div class="ws-add-container">
+  <div class="ws-add-hr"></div>
+  <button class="ws-btn ws-btn-secondary ws-add-btn" (click)="openForm()">
+    <i-bs name="person-plus-fill"></i-bs>
+    <span>Ajouter un compte</span>
+  </button>
+  <div class="ws-add-hr"></div>
 </div>

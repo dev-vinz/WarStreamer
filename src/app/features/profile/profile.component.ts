@@ -1,23 +1,15 @@
-import {
-  Component,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-  inject,
-} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Language } from '../../core/api/models/Language';
 import { User } from '../../core/api/models/User';
 
 import { WarStreamerService } from '../../core/api/warstreamer.service';
-import { AuthService } from '../../core/authentication/auth.service';
 
+import { take } from 'rxjs';
 import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
 import { UpdateModalComponent } from './components/update-modal/update-modal.component';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'app-profile',

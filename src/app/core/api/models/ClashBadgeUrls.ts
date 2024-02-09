@@ -1,14 +1,11 @@
-import { Expose, Type } from 'class-transformer';
-import { ClashBadgeUrls } from './ClashBadgeUrls';
-
-export class ClashClan {
+export class ClashBadgeUrls {
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                          PROPERTIES                         *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-  private _tag!: string;
-  private _name!: string;
-  private _badgeUrls!: ClashBadgeUrls;
+  private _large!: string;
+  private _medium!: string;
+  private _small!: string;
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                           PUBLIC                            *|
@@ -18,15 +15,15 @@ export class ClashClan {
   |*           GETTERS           *|
   \* * * * * * * * * * * * * * * */
 
-  public get tag(): string {
-    return this._tag;
+  public get large(): string {
+    return this._large;
   }
 
-  public get name(): string {
-    return this._name;
+  public get medium(): string {
+    return this._medium;
   }
 
-  public get badgeUrls(): ClashBadgeUrls {
-    return this._badgeUrls;
+  public get small(): string {
+    return this._small;
   }
 }

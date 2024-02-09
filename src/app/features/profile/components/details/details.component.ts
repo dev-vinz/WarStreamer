@@ -21,6 +21,9 @@ export class DetailsComponent {
   @Input()
   public newsletter: boolean = false;
 
+  @Input()
+  public loading: boolean = false;
+
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                        CONSTRUCTORS                         *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */

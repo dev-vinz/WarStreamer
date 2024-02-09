@@ -19,6 +19,7 @@
       </ul>
     </div>
   </div>
+  <app-details *ngIf="loading" [loading]="true"></app-details>
   <app-details
     *ngIf="!loading"
     [premiumLevel]="user.tierLevel"

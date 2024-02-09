@@ -1,0 +1,26 @@
+<!-- TODO: Language -->
+<div class="ws-card" [ngClass]="{ 'ws-touch': isTouchEnabled }">
+  <div class="ws-img">
+    <img [src]="townHallImage" title="{{ 'HDV' + townHallLevel }}" alt=" " />
+  </div>
+  <div
+    class="ws-content"
+    cdkDrag
+    cdkDragBoundary=".ws-card"
+    cdkDragLockAxis="x"
+    [cdkDragDisabled]="!isTouchEnabled"
+    (cdkDragMoved)="dragMoved($event)"
+    (cdkDragReleased)="dragReleased($event)"
+  >
+    <div class="ws-title">{{ name }}</div>
+    <div class="ws-subtitle">{{ tag }}</div>
+  </div>
+  <div class="ws-touch-delete" [style.width.px]="touchDeleteWidth">
+    <i-bs name="trash" width="25" height="25"></i-bs>
+  </div>
+  <div class="ws-btn-content">
+    <button class="ws-btn ws-btn-danger" (click)="deleteAccount()">
+      Supprimer
+    </button>
+  </div>
+</div>

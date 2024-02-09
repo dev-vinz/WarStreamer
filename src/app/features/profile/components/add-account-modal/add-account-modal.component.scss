@@ -1,0 +1,96 @@
+.ws-loading {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  cursor: wait;
+  z-index: 999;
+}
+
+.ws-modal {
+  padding: 2rem 2rem 1rem 2rem;
+
+  background-color: var(--bgColor);
+  color: var(--textColor);
+
+  border-radius: 5px;
+
+  .ws-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    margin-bottom: 0.75rem;
+
+    .ws-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    .ws-close {
+      background-color: transparent;
+      color: rgba(var(--textColorRGB), 0.8) !important;
+
+      border: none;
+
+      outline: none;
+
+      transition: color 0.2s ease-in-out;
+
+      &:hover {
+        color: var(--textColor) !important;
+      }
+    }
+  }
+
+  .ws-body {
+    margin-bottom: 1.25rem;
+
+    color: rgba(var(--textColorRGB), 0.8);
+
+    font-size: 0.85rem;
+
+    .ws-text-muted {
+      color: rgba(var(--textColorRGB), 0.6);
+    }
+
+    .input-group-text {
+      color: rgba(var(--textColorRGB, 0.8));
+      background-color: rgba(var(--bgColorLightRGB), 0.5);
+      border: 1px solid var(--bgColor);
+    }
+
+    #tag {
+      text-transform: uppercase;
+    }
+
+    #token {
+      text-transform: lowercase;
+    }
+
+    .form-control {
+      color: var(--textColorLight);
+      background-color: var(--bgColorLight);
+      border: 1px solid var(--bgColor);
+
+      &:active,
+      &:focus {
+        color: inherit;
+        border: 1px solid var(--bgColor);
+        box-shadow: none;
+      }
+    }
+
+    .ws-form-error {
+      color: rgba(var(--dangerColorRGB), 0.8);
+      font-size: 0.8rem;
+    }
+  }
+
+  .ws-footer {
+    display: flex;
+
+    justify-content: flex-end;
+  }
+}

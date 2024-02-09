@@ -1,3 +1,30 @@
-.ws-temp {
-  height: 500px;
+.ws-acc-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 1rem;
+
+  margin-block: 2rem 3rem;
+
+  .ws-card {
+    flex-basis: 300px;
+    flex-grow: 1;
+  }
+}
+
+.ws-add-container {
+  display: flex;
+
+  align-items: center;
+  gap: 1rem;
+
+  .ws-add-hr {
+    flex-grow: 1;
+
+    border-top: 1px solid rgba(var(--secondaryColorRGB), 0.3);
+  }
+
+  .ws-add-btn {
+    flex-grow: 0;
+  }
 }

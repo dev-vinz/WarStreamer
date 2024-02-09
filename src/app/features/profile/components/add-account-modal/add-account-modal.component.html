@@ -1,0 +1,76 @@
+<!-- TODO: Language -->
+<div *ngIf="processing" class="ws-loading"></div>
+<form class="ws-modal" [formGroup]="accForm" (ngSubmit)="addAccount()">
+  <div class="ws-header">
+    <h4 class="ws-title">Ajouter un compte</h4>
+    <button class="ws-close" type="button" (click)="modal.dismiss()">
+      <i-bs name="x-lg"></i-bs>
+    </button>
+  </div>
+  <div class="ws-body">
+    <div class="row mb-3">
+      <div class="col ws-text-muted">
+        Le jeton API sert uniquement à vérifier que vous êtes bien le
+        propriétaire du compte, il ne sera pas enregistré. Vous le trouverez
+        dans les paramètres avancés du jeu.
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md mb-3">
+        <label for="tag" class="form-label">Tag</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i-bs name="hash"></i-bs>
+          </span>
+          <input
+            id="tag"
+            class="form-control"
+            type="text"
+            formControlName="tag"
+            autocomplete="off"
+          />
+        </div>
+        <div
+          *ngIf="accForm.get('tag')?.errors?.['required'] && accForm.get('tag')?.touched"
+          class="ws-form-error"
+        >
+          Le tag est obligatoire
+        </div>
+      </div>
+      <div class="col-md mb-3">
+        <label for="token" class="form-label">Jeton API</label>
+        <input
+          id="token"
+          class="form-control"
+          type="text"
+          formControlName="token"
+          autocomplete="off"
+        />
+        <div
+          *ngIf="accForm.get('token')?.errors?.['required'] && accForm.get('token')?.touched"
+          class="ws-form-error"
+        >
+          Le jeton est obligatoire
+        </div>
+        <div
+          *ngIf="accForm.get('token')?.errors?.['minlength'] || accForm.get('token')?.errors?.['maxlength']"
+          class="ws-form-error"
+        >
+          Doit être de 8 caractères
+        </div>
+      </div>
+    </div>
+    <div *ngIf="accForm.hasError('invalid')" class="row mb-3">
+      <div class="col ws-form-error">Tag et token ne correspondent pas</div>
+    </div>
+    <div *ngIf="accForm.hasError('duplicated')" class="row mb-3">
+      <div class="col ws-form-error">Le compte est déjà enregistré</div>
+    </div>
+  </div>
+  <div class="ws-footer">
+    <button class="ws-btn" type="button" (click)="modal.close()">
+      Annuler
+    </button>
+    <button class="ws-btn ws-btn-success" type="submit">Ajouter</button>
+  </div>
+</form>

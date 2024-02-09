@@ -11,7 +11,9 @@
 
   // --primaryColorRGB: 252, 228, 166;
   --primaryColorRGB: 255, 224, 120;
-  --secondaryColorRGB: 0, 102, 166;
+  // --secondaryColorRGB: 0, 102, 166; // Dark blue
+  --secondaryColorRGB: 173, 216, 230; // Light blue
+  // --secondaryColorRGB: 255, 192, 203; // Pink
 
   --successColorRGB: 34, 139, 34;
   --dangerColorRGB: 220, 20, 60;
@@ -96,7 +98,7 @@ body {
 
     &.ws-btn-secondary {
       --ws-btn-color: var(--secondaryColorRGB);
-      --ws-btn-text-color: var(--textColorRGB);
+      --ws-btn-text-color: var(--bgColorLightRGB);
     }
 
     &.ws-btn-success {
@@ -147,7 +149,7 @@ body {
 
     > i + span,
     > i-bs + span {
-      margin-left: 0.5rem;
+      margin-left: 0.75rem;
     }
   }
 
