@@ -14,7 +14,8 @@ export class ClashPlayerRequests extends Requests {
 
   public get(tag: string): Request<ClashPlayer> {
     return new GetRequest<ClashPlayer>(
-      this.url('coc.player.get', encodeURIComponent(tag))
+      this.url('coc.player.get', encodeURIComponent(tag)),
+      Requests._createClashPlayerInstance
     );
   }
 
@@ -25,7 +26,8 @@ export class ClashPlayerRequests extends Requests {
   public verify(tag: string, token: string): Request<ClashToken> {
     return new PostRequest<string, ClashToken>(
       this.url('coc.player.verify', encodeURIComponent(tag)),
-      `"${token}"`
+      `"${token}"`,
+      Requests._createClashTokenInstance
     );
   }
 

@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   private _modalService = inject(NgbModal);
 
   @ViewChild('loginFailed')
-  public errorModal!: TemplateRef<any>;
+  private _errorModal!: TemplateRef<any>;
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                        CONSTRUCTORS                         *|
@@ -99,6 +99,6 @@ export class LoginComponent implements OnInit {
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
   private _openModal(): void {
-    this._modalService.open(this.errorModal, { centered: true });
+    this._modalService.open(this._errorModal, { centered: true });
   }
 }

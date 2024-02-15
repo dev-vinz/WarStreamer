@@ -14,12 +14,16 @@ export class ImageRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public getAll(): Request<Image[]> {
-    return new GetRequest<Image[]>(this.url('images'));
+    return new GetRequest<Image[]>(
+      this.url('images'),
+      Requests._createImageInstances
+    );
   }
 
   public get(name: string): Request<Image> {
     return new GetRequest<Image>(
-      this.url('images.get', encodeURIComponent(name))
+      this.url('images.get', encodeURIComponent(name)),
+      Requests._createImageInstance
     );
   }
 
@@ -28,7 +32,11 @@ export class ImageRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public add(image: Image): Request<Image> {
-    return new PostRequest<Image, Image>(this.url('images'), image);
+    return new PostRequest<FormData, Image>(
+      this.url('images'),
+      image.exportAsFormData(),
+      Requests._createImageInstance
+    );
   }
 
   /* * * * * * * * * * * * * * * *\
@@ -36,9 +44,10 @@ export class ImageRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public update(name: string, image: Image): Request<boolean> {
-    return new PutRequest<Image, boolean>(
+    return new PutRequest<FormData, boolean>(
       this.url('images.get', encodeURIComponent(name)),
-      image
+      image.exportAsFormData(),
+      Requests._createBooleanInstance
     );
   }
 
@@ -48,7 +57,8 @@ export class ImageRequests extends Requests {
 
   public delete(name: string): Request<boolean> {
     return new DeleteRequest<boolean>(
-      this.url('images.get', encodeURIComponent(name))
+      this.url('images.get', encodeURIComponent(name)),
+      Requests._createBooleanInstance
     );
   }
 }

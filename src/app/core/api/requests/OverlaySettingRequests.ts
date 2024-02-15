@@ -15,11 +15,17 @@ export class OverlaySettingRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public get(): Request<OverlaySetting> {
-    return new GetRequest<OverlaySetting>(this.url('overlay'));
+    return new GetRequest<OverlaySetting>(
+      this.url('overlay'),
+      Requests._createOverlaySettingInstance
+    );
   }
 
   public getImages(): Request<Image[]> {
-    return new GetRequest<Image[]>(this.url('overlay.images'));
+    return new GetRequest<Image[]>(
+      this.url('overlay.images'),
+      Requests._createImageInstances
+    );
   }
 
   /* * * * * * * * * * * * * * * *\
@@ -29,7 +35,8 @@ export class OverlaySettingRequests extends Requests {
   public add(setting: OverlaySetting): Request<OverlaySetting> {
     return new PostRequest<OverlaySetting, OverlaySetting>(
       this.url('overlay'),
-      setting
+      setting,
+      Requests._createOverlaySettingInstance
     );
   }
 
@@ -40,7 +47,8 @@ export class OverlaySettingRequests extends Requests {
   public update(setting: OverlaySetting): Request<boolean> {
     return new PutRequest<OverlaySetting, boolean>(
       this.url('overlay'),
-      setting
+      setting,
+      Requests._createBooleanInstance
     );
   }
 
@@ -49,6 +57,9 @@ export class OverlaySettingRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public delete(): Request<boolean> {
-    return new DeleteRequest<boolean>(this.url('overlay'));
+    return new DeleteRequest<boolean>(
+      this.url('overlay'),
+      Requests._createBooleanInstance
+    );
   }
 }

@@ -14,11 +14,14 @@ export class UserRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public get(): Request<User> {
-    return new GetRequest<User>(this.url('user'));
+    return new GetRequest<User>(this.url('user'), Requests._createUserInstance);
   }
 
   public getLanguage(): Request<Language> {
-    return new GetRequest<Language>(this.url('user.language'));
+    return new GetRequest<Language>(
+      this.url('user.language'),
+      Requests._createLanguageInstance
+    );
   }
 
   /* * * * * * * * * * * * * * * *\
@@ -30,7 +33,11 @@ export class UserRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public update(user: User): Request<boolean> {
-    return new PutRequest<User, boolean>(this.url('user'), user);
+    return new PutRequest<User, boolean>(
+      this.url('user'),
+      user,
+      Requests._createBooleanInstance
+    );
   }
 
   /* * * * * * * * * * * * * * * *\
@@ -38,6 +45,9 @@ export class UserRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public delete(): Request<boolean> {
-    return new DeleteRequest<boolean>(this.url('user'));
+    return new DeleteRequest<boolean>(
+      this.url('user'),
+      Requests._createBooleanInstance
+    );
   }
 }

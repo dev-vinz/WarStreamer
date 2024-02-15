@@ -13,12 +13,16 @@ export class AccountRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public getAll(): Request<Account[]> {
-    return new GetRequest<Account[]>(this.url('accounts'));
+    return new GetRequest<Account[]>(
+      this.url('accounts'),
+      Requests._createAccountInstances
+    );
   }
 
   public get(tag: string): Request<Account> {
     return new GetRequest<Account>(
-      this.url('accounts.get', encodeURIComponent(tag))
+      this.url('accounts.get', encodeURIComponent(tag)),
+      Requests._createAccountInstance
     );
   }
 
@@ -27,7 +31,11 @@ export class AccountRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public add(account: Account): Request<Account> {
-    return new PostRequest<Account, Account>(this.url('accounts'), account);
+    return new PostRequest<Account, Account>(
+      this.url('accounts'),
+      account,
+      Requests._createAccountInstance
+    );
   }
 
   /* * * * * * * * * * * * * * * *\
@@ -40,7 +48,8 @@ export class AccountRequests extends Requests {
 
   public delete(tag: string): Request<boolean> {
     return new DeleteRequest<boolean>(
-      this.url('accounts.get', encodeURIComponent(tag))
+      this.url('accounts.get', encodeURIComponent(tag)),
+      Requests._createBooleanInstance
     );
   }
 }

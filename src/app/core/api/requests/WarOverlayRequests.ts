@@ -14,11 +14,17 @@ export class WarOverlayRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public getAll(): Request<WarOverlay[]> {
-    return new GetRequest<WarOverlay[]>(this.url('waroverlays'));
+    return new GetRequest<WarOverlay[]>(
+      this.url('waroverlays'),
+      Requests._createWarOverlayInstances
+    );
   }
 
   public get(id: number): Request<WarOverlay> {
-    return new GetRequest<WarOverlay>(this.url('waroverlays.get', id));
+    return new GetRequest<WarOverlay>(
+      this.url('waroverlays.get', id),
+      Requests._createWarOverlayInstance
+    );
   }
 
   /* * * * * * * * * * * * * * * *\
@@ -28,7 +34,8 @@ export class WarOverlayRequests extends Requests {
   public add(overlay: WarOverlay): Request<WarOverlay> {
     return new PostRequest<WarOverlay, WarOverlay>(
       this.url('waroverlays'),
-      overlay
+      overlay,
+      Requests._createWarOverlayInstance
     );
   }
 
@@ -39,7 +46,8 @@ export class WarOverlayRequests extends Requests {
   public update(id: number, overlay: WarOverlay): Request<boolean> {
     return new PutRequest<WarOverlay, boolean>(
       this.url('waroverlays.get', id),
-      overlay
+      overlay,
+      Requests._createBooleanInstance
     );
   }
 
@@ -48,6 +56,9 @@ export class WarOverlayRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public delete(id: number): Request<boolean> {
-    return new DeleteRequest<boolean>(this.url('waroverlays.get', id));
+    return new DeleteRequest<boolean>(
+      this.url('waroverlays.get', id),
+      Requests._createBooleanInstance
+    );
   }
 }

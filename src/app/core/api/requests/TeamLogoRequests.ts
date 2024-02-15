@@ -14,11 +14,17 @@ export class TeamLogoRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public getAll(): Request<TeamLogo[]> {
-    return new GetRequest<TeamLogo[]>(this.url('teamlogos'));
+    return new GetRequest<TeamLogo[]>(
+      this.url('teamlogos'),
+      Requests._createTeamLogoInstances
+    );
   }
 
   public get(name: string): Request<TeamLogo> {
-    return new GetRequest<TeamLogo>(this.url('teamlogos.get', name));
+    return new GetRequest<TeamLogo>(
+      this.url('teamlogos.get', name),
+      Requests._createTeamLogoInstance
+    );
   }
 
   /* * * * * * * * * * * * * * * *\
@@ -26,7 +32,11 @@ export class TeamLogoRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public add(logo: TeamLogo): Request<TeamLogo> {
-    return new PostRequest<TeamLogo, TeamLogo>(this.url('teamlogos'), logo);
+    return new PostRequest<FormData, TeamLogo>(
+      this.url('teamlogos'),
+      logo.exportAsFormData(),
+      Requests._createTeamLogoInstance
+    );
   }
 
   /* * * * * * * * * * * * * * * *\
@@ -34,9 +44,10 @@ export class TeamLogoRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public update(name: string, logo: TeamLogo): Request<boolean> {
-    return new PutRequest<TeamLogo, boolean>(
+    return new PutRequest<FormData, boolean>(
       this.url('teamlogos.get', name),
-      logo
+      logo.exportAsFormData(),
+      Requests._createBooleanInstance
     );
   }
 
@@ -45,6 +56,9 @@ export class TeamLogoRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public delete(name: string): Request<boolean> {
-    return new DeleteRequest<boolean>(this.url('teamlogos.get', name));
+    return new DeleteRequest<boolean>(
+      this.url('teamlogos.get', name),
+      Requests._createBooleanInstance
+    );
   }
 }

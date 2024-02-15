@@ -11,12 +11,16 @@ export class LanguageRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public getAll(): Request<Language[]> {
-    return new GetRequest<Language[]>(this.url('languages'));
+    return new GetRequest<Language[]>(
+      this.url('languages'),
+      Requests._createLanguageInstances
+    );
   }
 
   public get(id: string): Request<Language> {
     return new GetRequest<Language>(
-      this.url('languages.get', encodeURIComponent(id))
+      this.url('languages.get', encodeURIComponent(id)),
+      Requests._createLanguageInstance
     );
   }
 

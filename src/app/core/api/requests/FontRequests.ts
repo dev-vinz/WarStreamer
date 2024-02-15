@@ -11,16 +11,23 @@ export class FontRequests extends Requests {
   \* * * * * * * * * * * * * * * */
 
   public getAll(): Request<Font[]> {
-    return new GetRequest<Font[]>(this.url('fonts'));
+    return new GetRequest<Font[]>(
+      this.url('fonts'),
+      Requests._createFontInstances
+    );
   }
 
   public get(id: string): Request<Font> {
-    return new GetRequest<Font>(this.url('fonts.get', encodeURIComponent(id)));
+    return new GetRequest<Font>(
+      this.url('fonts.get', encodeURIComponent(id)),
+      Requests._createFontInstance
+    );
   }
 
   public getFile(id: string): Request<Blob> {
     return new GetRequest<Blob>(
-      this.url('fonts.get.file', encodeURIComponent(id))
+      this.url('fonts.get.file', encodeURIComponent(id)),
+      Requests._createBlobInstance
     );
   }
 
