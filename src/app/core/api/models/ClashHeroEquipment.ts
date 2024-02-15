@@ -1,35 +1,20 @@
-import { ClashClan } from './ClashClan';
-import { ClashHero } from './ClashHero';
-
-export class ClashPlayer {
+export class ClashHeroEquipment {
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                          PROPERTIES                         *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-  private _tag: string;
   private _name: string;
-  private _townHallLevel: number;
-  private _heroes: ClashHero[];
-  private _clan: ClashClan;
+  private _level: number;
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                        CONSTRUCTORS                         *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-  constructor(
-    tag: string,
-    name: string,
-    townHallLevel: number,
-    heroes: ClashHero[],
-    clan: ClashClan
-  ) {
+  constructor(name: string, level: number) {
     // Inputs
     {
-      this._tag = tag;
       this._name = name;
-      this._townHallLevel = townHallLevel;
-      this._heroes = heroes;
-      this._clan = clan;
+      this._level = level;
     }
   }
 
@@ -41,23 +26,11 @@ export class ClashPlayer {
   |*           GETTERS           *|
   \* * * * * * * * * * * * * * * */
 
-  public get tag(): string {
-    return this._tag;
-  }
-
   public get name(): string {
     return this._name;
   }
 
-  public get townHallLevel(): number {
-    return this._townHallLevel;
-  }
-
-  public get heroes(): ClashHero[] {
-    return this._heroes;
-  }
-
-  public get clan(): ClashClan {
-    return this._clan;
+  public get level(): number {
+    return this._level;
   }
 }

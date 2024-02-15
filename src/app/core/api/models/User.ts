@@ -1,12 +1,40 @@
+import { Expose } from 'class-transformer';
+
 export class User {
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                          PROPERTIES                         *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-  private _id!: string;
-  private _languageId!: string;
-  private _tierLevel!: number;
-  private _newsLetter!: boolean;
+  @Expose({ name: 'id' })
+  private _id: string;
+
+  @Expose({ name: 'languageId' })
+  private _languageId: string;
+
+  @Expose({ name: 'tierLevel' })
+  private _tierLevel: number;
+
+  @Expose({ name: 'newsLetter' })
+  private _newsLetter: boolean;
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
+  |*                        CONSTRUCTORS                         *|
+  \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+  constructor(
+    id: string,
+    languageId: string,
+    tierLevel: number,
+    newsLetter: boolean
+  ) {
+    // Inputs
+    {
+      this._id = id;
+      this._languageId = languageId;
+      this._tierLevel = tierLevel;
+      this._newsLetter = newsLetter;
+    }
+  }
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                           PUBLIC                            *|

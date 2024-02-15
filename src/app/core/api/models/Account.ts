@@ -6,10 +6,10 @@ export class Account {
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
   @Expose({ name: 'tag' })
-  private _tag!: string;
+  private _tag: string;
 
   @Expose({ name: 'userId' })
-  private _userId!: string;
+  private _userId: string;
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                        CONSTRUCTORS                         *|

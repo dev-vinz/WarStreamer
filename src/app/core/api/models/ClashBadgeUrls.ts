@@ -3,9 +3,22 @@ export class ClashBadgeUrls {
   |*                          PROPERTIES                         *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-  private _large!: string;
-  private _medium!: string;
-  private _small!: string;
+  private _large: string;
+  private _medium: string;
+  private _small: string;
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
+  |*                        CONSTRUCTORS                         *|
+  \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+  constructor(large: string, medium: string, small: string) {
+    // Inputs
+    {
+      this._large = large;
+      this._medium = medium;
+      this._small = small;
+    }
+  }
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                           PUBLIC                            *|

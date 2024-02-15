@@ -1,25 +1,20 @@
-import { Expose, Type } from 'class-transformer';
-import { ClashBadgeUrls } from './ClashBadgeUrls';
-
-export class ClashClan {
+export class Location2D {
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                          PROPERTIES                         *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-  private _tag: string;
-  private _name: string;
-  private _badgeUrls: ClashBadgeUrls;
+  private _x: number;
+  private _y: number;
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                        CONSTRUCTORS                         *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-  constructor(tag: string, name: string, badgeUrls: ClashBadgeUrls) {
+  constructor(x: number, y: number) {
     // Inputs
     {
-      this._tag = tag;
-      this._name = name;
-      this._badgeUrls = badgeUrls;
+      this._x = x;
+      this._y = y;
     }
   }
 
@@ -31,15 +26,23 @@ export class ClashClan {
   |*           GETTERS           *|
   \* * * * * * * * * * * * * * * */
 
-  public get tag(): string {
-    return this._tag;
+  public get x(): number {
+    return this._x;
   }
 
-  public get name(): string {
-    return this._name;
+  public get y(): number {
+    return this._y;
   }
 
-  public get badgeUrls(): ClashBadgeUrls {
-    return this._badgeUrls;
+  /* * * * * * * * * * * * * * * *\
+  |*           SETTERS           *|
+  \* * * * * * * * * * * * * * * */
+
+  public set x(value: number) {
+    this._x = value;
+  }
+
+  public set y(value: number) {
+    this._y = value;
   }
 }
