@@ -1,3 +1,4 @@
+import { take } from 'rxjs';
 import { Component, OnInit, inject } from '@angular/core';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -52,7 +53,7 @@ export class AccountsComponent implements OnInit {
       centered: true,
     });
 
-    modalRef.closed.subscribe((result) => {
+    modalRef.closed.pipe(take(1)).subscribe((result) => {
       if (result as ClashPlayer) {
         this._accounts.push(result);
         this._sortAccounts();

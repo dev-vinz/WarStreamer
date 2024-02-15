@@ -1,0 +1,218 @@
+.ws-card {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  width: 100%;
+  min-height: 300px;
+
+  padding: 2rem 3rem 2rem 1rem;
+
+  background-color: var(--bgColorLight);
+
+  border-radius: 20px;
+
+  .ws-img-box {
+    position: relative;
+    display: inherit;
+
+    width: 150px;
+    height: 150px;
+
+    img {
+      width: 150px;
+      height: 150px;
+
+      padding: 0.5rem;
+
+      border: 6px solid rgba(var(--primaryColorRGB), 0.3);
+      border-radius: 50%;
+
+      object-fit: contain;
+    }
+  }
+
+  .ws-content {
+    display: grid;
+
+    width: 200px;
+    min-height: calc(300px - 4rem);
+    height: 100%;
+
+    flex-grow: 1;
+
+    .ws-item {
+      display: flex;
+      flex-direction: column;
+
+      justify-content: space-between;
+
+      gap: 1rem;
+
+      width: 100% !important;
+      height: auto;
+
+      .ws-card-container {
+        display: flex;
+        flex-direction: column;
+
+        gap: 0.25rem;
+
+        .ws-title {
+          font-size: 1.3rem;
+          font-weight: 600;
+
+          letter-spacing: 0.1rem;
+          text-align: center;
+        }
+
+        .ws-clan {
+          display: flex;
+
+          width: 100%;
+
+          align-items: center;
+          gap: 1rem;
+
+          padding: 0.25rem 1rem;
+
+          color: inherit;
+
+          background-color: rgba(var(--primaryColorRGB), 0.3);
+
+          border: none;
+          border-radius: 5px;
+
+          .ws-badge {
+            width: 32px;
+            height: 32px;
+
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          .ws-infos {
+            display: flex;
+
+            flex-direction: column;
+            align-items: flex-start;
+
+            font-size: 0.9rem;
+
+            .ws-text-muted {
+              color: rgba(var(--textColorRGB), 0.6);
+
+              font-size: 0.8rem;
+            }
+          }
+        }
+      }
+
+      .ws-btn-container {
+        display: flex;
+
+        align-items: center;
+        gap: 0rem;
+
+        .ws-hr {
+          flex-grow: 1;
+
+          border-top: 1px solid rgba(var(--primaryColorRGB), 0.3);
+        }
+
+        .ws-card-button {
+          position: relative;
+          display: inline-block;
+
+          flex-grow: 0;
+
+          width: fit-content;
+
+          padding: 0 1rem;
+
+          color: rgba(var(--primaryColorRGB), 0.5);
+
+          background: none;
+
+          border: none;
+          border-left: 1px solid rgba(var(--primaryColorRGB), 0.3);
+          border-right: 1px solid rgba(var(--primaryColorRGB), 0.3);
+
+          font-size: 0.8rem;
+
+          transition: letter-spacing 0.4s;
+
+          &:hover {
+            letter-spacing: 0.05rem;
+          }
+        }
+      }
+
+      .ws-btn-action {
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: 0.5rem;
+        justify-content: center;
+
+        > .ws-btn {
+          margin: 0;
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
+
+          font-size: 0.8rem;
+
+          letter-spacing: 0.1rem;
+        }
+      }
+
+      > *,
+      .ws-card-container > * {
+        opacity: 0;
+        transform: translateY(25px);
+
+        transition: opacity 0.4s, transform 0.4s;
+      }
+
+      &.swiper-slide-active {
+        > *,
+        .ws-card-container > * {
+          opacity: 1;
+          transform: none;
+
+          @for $i from 0 to 15 {
+            &:nth-child(#{$i + 1}) {
+              transition-delay: $i * 0.1 + 0.3s;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .ws-teams-card-swiper-pagination {
+    position: absolute;
+
+    top: 50%;
+    left: auto !important;
+    right: 1rem;
+    bottom: auto !important;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+
+    text-align: center;
+    z-index: 21;
+
+    transform: translateY(-50%);
+  }
+}

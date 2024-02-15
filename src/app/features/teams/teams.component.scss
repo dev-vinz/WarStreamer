@@ -1,0 +1,14 @@
+.ws-teams {
+  display: flex;
+
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  > * {
+    flex-basis: 400px;
+    flex-grow: 1;
+
+    min-width: 0;
+    min-height: 0;
+  }
+}

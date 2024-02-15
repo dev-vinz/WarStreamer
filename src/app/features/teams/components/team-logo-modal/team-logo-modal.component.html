@@ -1,0 +1,139 @@
+<!-- TODO: Language -->
+<div *ngIf="processing" class="ws-loading"></div>
+<form class="ws-modal" [formGroup]="teamForm" (ngSubmit)="addTeamLogo()">
+  <div class="ws-header">
+    <h4 *ngIf="!isUpdating" class="ws-title">Ajouter une équipe</h4>
+    <h4 *ngIf="isUpdating" class="ws-title">Modifier une équipe</h4>
+    <button class="ws-close" type="button" (click)="modal.dismiss()">
+      <i-bs name="x-lg"></i-bs>
+    </button>
+  </div>
+  <div class="ws-body">
+    <div class="row mb-3">
+      <div class="col">
+        <label for="teamName" class="form-label">Nom de l'équipe</label>
+        <input
+          id="teamName"
+          class="form-control"
+          type="text"
+          formControlName="name"
+          autocomplete="off"
+        />
+        <div
+          *ngIf="teamForm.get('name')?.errors?.['required'] && teamForm.get('name')?.touched"
+          class="ws-form-error"
+        >
+          Le nom est obligatoire
+        </div>
+        <div
+          *ngIf="teamForm.get('name')?.errors?.['duplicated'] && teamForm.get('name')?.touched"
+          class="ws-form-error"
+        >
+          Le nom est déjà pris
+        </div>
+        <div
+          *ngIf="teamForm.get('name')?.errors?.['invalidName'] && teamForm.get('name')?.touched"
+          class="ws-form-error"
+        >
+          Le nom ne doit pas contenir d'accent ni de caractère spécial
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="teamLogo" class="form-label">Logo d'équipe</label>
+        <input
+          #teamLogo
+          id="teamLogo"
+          class="form-control form-control-sm"
+          type="file"
+          accept="image/png"
+          data-bs-theme="dark"
+          (change)="onFileChange($event)"
+        />
+        <div
+          *ngIf="teamForm.get('logo')?.hasError('invalidType')"
+          class="ws-form-error"
+        >
+          L'image n'est pas au format PNG
+        </div>
+        <div
+          *ngIf="
+            teamForm.get('logo')?.hasError('required') &&
+            teamForm.get('logo')?.touched
+          "
+          class="ws-form-error"
+        >
+          Le logo est obligatoire
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md">
+        <label for="clanSearch" class="form-label">Rechercher un clan</label>
+        <input
+          #clanSearch
+          id="clanSearch"
+          class="form-control"
+          type="text"
+          autocomplete="off"
+          (input)="onInputChange($event)"
+        />
+        <div *ngIf="teamForm.get('tags')?.hasError('empty')" class="row mb-3">
+          <div class="col ws-form-error">
+            Il faut enregistrer au moins un clan
+          </div>
+        </div>
+      </div>
+      <div class="col-md d-flex flex-column">
+        <label class="form-label"
+          >Clans trouvés ({{ clansSuggested.length }})</label
+        >
+        <div *ngIf="clansLoading">Recherche en cours...</div>
+        <div *ngIf="clansEmpty">Aucun résultat</div>
+        <div *ngFor="let clan of clansSuggested">
+          <button class="ws-clan" type="button" (click)="addClan(clan.tag)">
+            <div class="ws-badge">
+              <img [src]="clan.badgeUrls.small" [alt]="clan.name" />
+            </div>
+            <div class="ws-infos">
+              <span>{{ clan.name }}</span>
+              <span class="ws-text-muted">{{ clan.tag }}</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label class="form-label">Clans sélectionnés</label>
+        <div
+          *ngFor="let clan of clansRegistered; let i = index"
+          class="ws-clan"
+        >
+          <div class="ws-badge">
+            <img [src]="clan.badgeUrls.small" alt="BadgeUrl" />
+          </div>
+          <div class="ws-infos">
+            <span>{{ clan.name }}</span>
+            <span class="ws-text-muted">{{ clan.tag }}</span>
+          </div>
+          <button class="ws-btn ws-btn-danger ms-auto" (click)="removeClan(i)">
+            <i-bs name="trash"></i-bs>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ws-footer">
+    <button class="ws-btn" type="button" (click)="modal.close()">
+      Annuler
+    </button>
+    <button *ngIf="!isUpdating" class="ws-btn ws-btn-success" type="submit">
+      Ajouter
+    </button>
+    <button *ngIf="isUpdating" class="ws-btn ws-btn-success" type="submit">
+      Modifier
+    </button>
+  </div>
+</form>

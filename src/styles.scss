@@ -111,6 +111,11 @@ body {
       --ws-btn-text-color: var(--textColorRGB);
     }
 
+    &.ws-btn-dark {
+      --ws-btn-color: var(--bgColorRGB);
+      --ws-btn-text-color: var(--textColorRGB);
+    }
+
     &.ws-btn-shiny {
       background-image: linear-gradient(
         45deg,
@@ -158,3 +163,20 @@ body {
     overflow: hidden;
   }
 }
+
+// .ws-swiper-pagination-bullet {
+//   width: 11px;
+//   height: 11px;
+//   display: block;
+//   border-radius: 10px;
+//   background: #062744;
+//   opacity: 0.2;
+//   transition: all 0.3s;
+// }
+
+// .ws-swiper-pagination-bullet-active {
+//   opacity: 1;
+//   background: #fd3838;
+//   height: 30px;
+//   box-shadow: 0px 0px 20px rgba(252, 56, 56, 0.3);
+// }

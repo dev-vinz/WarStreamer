@@ -70,9 +70,7 @@ export class AddAccountModalComponent implements OnInit {
       .verify(tag, token)
       .execute();
 
-    const isValid = response.status === 0;
-
-    if (!isValid) {
+    if (!response.isValid) {
       // Update the form validity
       this._accForm.setErrors({ invalid: true });
       this._processing = false;
@@ -96,7 +94,7 @@ export class AddAccountModalComponent implements OnInit {
     }
 
     // Add the account
-    const account = new Account(tag, this._authService.discordUser?.id!);
+    const account = new Account(tag, this._authService.discordUser!.id);
     const addedAccount = await this._apiService.accounts.add(account).execute();
 
     // Get the player data

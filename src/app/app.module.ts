@@ -10,12 +10,19 @@ import { AppComponent } from './app.component';
 
 import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 
+import { TranslocoRootModule } from './transloco-root.module';
+
 import { CoreModule } from './core/core.module';
 import { DashboardModule } from './features/dashboard/dashboard.module';
 import { HomeModule } from './features/home/home.module';
 import { ProfileModule } from './features/profile/profile.module';
+import { TeamsModule } from './features/teams/teams.module';
 import { SharedModule } from './shared/shared.module';
-import { TranslocoRootModule } from './transloco-root.module';
+
+import { register } from 'swiper/element/bundle';
+
+// Register Swiper elements
+register();
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,15 +34,11 @@ import { TranslocoRootModule } from './transloco-root.module';
     HomeModule,
     NgbModule,
     NgxBootstrapIconsModule.pick(allIcons),
-    OAuthModule.forRoot({
-      resourceServer: {
-        allowedUrls: ['https://api.warstreamer.com', 'https://localhost:7134'],
-        sendAccessToken: true,
-      },
-    }),
+    OAuthModule.forRoot(),
     ProfileModule,
     SharedModule,
     HttpClientModule,
+    TeamsModule,
     TranslocoRootModule,
   ],
   providers: [

@@ -33,7 +33,7 @@ export class UpdateModalComponent implements OnInit {
   public newsletter: boolean = false;
 
   @Input()
-  public user: User = new User();
+  public user!: User;
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                        CONSTRUCTORS                         *|

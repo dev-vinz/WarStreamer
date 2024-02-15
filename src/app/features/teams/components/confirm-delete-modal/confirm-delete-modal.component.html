@@ -1,0 +1,18 @@
+<!-- TODO: Language -->
+<div class="ws-modal">
+  <div class="ws-header">
+    <h4 class="ws-title">En êtes-vous sûr(e) ?</h4>
+    <button class="ws-close" (click)="modal.dismiss()">
+      <i-bs name="x-lg"></i-bs>
+    </button>
+  </div>
+  <div class="ws-body">
+    Vous êtes sur le point de supprimer l'équipe <b>{{ teamName }}</b
+    >. Cette action est irréversible et entraînera la suppression de toutes les
+    données.
+  </div>
+  <div class="ws-footer">
+    <button class="ws-btn" (click)="modal.close()">Fermer</button>
+    <button class="ws-btn ws-btn-danger" (click)="delete()">Supprimer</button>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+<!-- TODO: Language  -->
 <header>
   <nav class="ws-navbar navbar navbar-expand-lg">
     <div class="ws-navbar-container">
@@ -21,12 +22,12 @@
         <ul *ngIf="isAuthenticated" class="ws-navbar-nav">
           <li class="ws-nav-item">
             <a class="ws-nav-link" routerLink="dashboard" (click)="closeMenu()">
-              {{ "shared.header.navbar.dashboard" | transloco }}
+              Tableau de bord
             </a>
           </li>
           <li class="ws-nav-item">
             <a class="ws-nav-link" routerLink="overlays" (click)="closeMenu()">
-              {{ "shared.header.navbar.overlays" | transloco }}
+              Overlays
             </a>
           </li>
         </ul>
@@ -73,21 +74,21 @@
                 routerLink="profile"
                 (click)="closeMenu()"
               >
-                {{ "shared.header.profile.profile" | transloco }}
+                Mon profil
               </a>
             </li>
             <li>
-              <a class="ws-dropdown-item" href="#" (click)="closeMenu()">
-                {{ "shared.header.profile.settings" | transloco }}
+              <a class="ws-dropdown-item" routerLink="" (click)="closeMenu()">
+                Ma configuration
               </a>
             </li>
             <li>
               <a
                 class="ws-dropdown-item"
-                routerLink="team-logos"
+                routerLink="teams"
                 (click)="closeMenu()"
               >
-                {{ "shared.header.profile.team-logos" | transloco }}
+                Mes équipes
               </a>
             </li>
             <li><hr class="ws-dropdown-divider" /></li>
@@ -96,7 +97,7 @@
                 class="ws-dropdown-btn ws-dropdown-item"
                 (click)="processLogout()"
               >
-                {{ "shared.header.profile.logout" | transloco }}
+                Déconnexion
               </button>
             </li>
           </ul>
@@ -106,7 +107,7 @@
           class="ws-nav-btn ws-nav-link"
           (click)="processLogin()"
         >
-          {{ "shared.header.login" | transloco }}
+          Connexion
         </button>
       </div>
     </div>

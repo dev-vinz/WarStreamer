@@ -1,0 +1,87 @@
+<!-- TODO: Language -->
+<div class="ws-card">
+  <div class="ws-img-box">
+    <img [src]="iconUrl" [alt]="teamLogo?.teamName" />
+  </div>
+  <swiper-container
+    class="ws-content"
+    #swiper
+    appSwiper
+    [config]="config"
+    init="false"
+  >
+    <swiper-slide class="ws-item">
+      <div></div>
+      <div class="ws-card-container">
+        <div class="ws-title">{{ teamLogo?.teamName }}</div>
+        <div class="text-center">
+          <button
+            class="ws-btn ws-btn-shiny ws-btn-primary"
+            (click)="nextSlide()"
+          >
+            Voir les clans
+          </button>
+        </div>
+      </div>
+      <div></div>
+    </swiper-slide>
+    <swiper-slide
+      *ngFor="let e of [].constructor(clanSlides); let i = index"
+      class="ws-item"
+    >
+      <div class="ws-btn-container">
+        <div class="ws-hr"></div>
+        <button class="ws-card-button" (click)="prevSlide()">
+          {{ isFirstClanSlide(i) ? "Informations" : "Clans précédents" }}
+        </button>
+        <div class="ws-hr"></div>
+      </div>
+      <div class="ws-card-container">
+        <div *ngFor="let clan of selectClansSlide(i)" class="ws-clan">
+          <div class="ws-badge">
+            <img [src]="clan.badgeUrls.small" [alt]="clan.name" />
+          </div>
+          <div class="ws-infos">
+            <span>{{ clan.name }}</span>
+            <span class="ws-text-muted">{{ clan.tag }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="ws-btn-container">
+        <div class="ws-hr"></div>
+        <button class="ws-card-button" (click)="nextSlide()">
+          {{ isLastClanSlide(i) ? "Actions" : "Clans suivants" }}
+        </button>
+        <div class="ws-hr"></div>
+      </div>
+    </swiper-slide>
+    <swiper-slide class="ws-item">
+      <div class="ws-btn-container">
+        <div class="ws-hr"></div>
+        <button class="ws-card-button" (click)="prevSlide()">
+          Clans précédents
+        </button>
+        <div class="ws-hr"></div>
+      </div>
+      <div class="ws-btn-action">
+        <button class="ws-btn ws-btn-secondary" (click)="edit()">
+          Modifier
+        </button>
+        <button class="ws-btn ws-btn-danger" (click)="delete()">
+          Supprimer
+        </button>
+      </div>
+      <div class="ws-btn-container">
+        <div class="ws-hr"></div>
+        <button class="ws-card-button" (click)="nextSlide()">
+          Informations
+        </button>
+        <div class="ws-hr"></div>
+      </div>
+    </swiper-slide>
+  </swiper-container>
+  <div
+    class="ws-teams-card-swiper-pagination"
+    [ngClass]="paginationCSSSelector"
+  ></div>
+</div>
