@@ -15,6 +15,7 @@ import { TranslocoRootModule } from './transloco-root.module';
 import { CoreModule } from './core/core.module';
 import { DashboardModule } from './features/dashboard/dashboard.module';
 import { HomeModule } from './features/home/home.module';
+import { ImagesModule } from './features/images/images.module';
 import { ProfileModule } from './features/profile/profile.module';
 import { TeamsModule } from './features/teams/teams.module';
 import { SharedModule } from './shared/shared.module';
@@ -32,6 +33,7 @@ register();
     CoreModule,
     DashboardModule,
     HomeModule,
+    ImagesModule,
     NgbModule,
     NgxBootstrapIconsModule.pick(allIcons),
     OAuthModule.forRoot(),

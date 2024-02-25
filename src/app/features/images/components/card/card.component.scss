@@ -1,0 +1,67 @@
+.ws-card {
+  position: relative;
+
+  display: block;
+
+  height: 350px;
+
+  border-radius: 40px;
+
+  overflow: hidden;
+
+  .ws-img-box {
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--bgColorLight);
+
+    .ws-img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+  }
+
+  .ws-header {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    padding: 1rem;
+
+    background-color: var(--primaryColor);
+
+    border-radius: 40px 0 0 0;
+
+    .ws-arc {
+      position: absolute;
+
+      right: 0;
+      bottom: 100%;
+
+      width: 80px;
+      height: 80px;
+
+      path {
+        fill: var(--primaryColor);
+      }
+    }
+
+    .ws-title {
+      margin: 0;
+
+      color: var(--bgColorLight);
+
+      font-size: 1rem;
+    }
+  }
+}

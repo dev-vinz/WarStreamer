@@ -1,0 +1,75 @@
+<!-- TODO: Language -->
+<div *ngIf="processing" class="ws-loading"></div>
+<form class="ws-modal" [formGroup]="imageForm" (ngSubmit)="addImage()">
+  <div class="ws-header">
+    <h4 class="ws-title">Ajouter une image</h4>
+    <button class="ws-close" type="button" (click)="modal.dismiss()">
+      <i-bs name="x-lg"></i-bs>
+    </button>
+  </div>
+  <div class="ws-body">
+    <div class="row mb-3">
+      <div class="col">
+        <label for="imageName" class="form-label">Nom de l'image</label>
+        <input
+          id="imageName"
+          class="form-control"
+          type="text"
+          formControlName="name"
+          autocomplete="off"
+        />
+        <div
+          *ngIf="imageForm.get('name')?.errors?.['required'] && imageForm.get('name')?.touched"
+          class="ws-form-error"
+        >
+          Le nom est obligatoire
+        </div>
+        <div
+          *ngIf="imageForm.get('name')?.errors?.['duplicated'] && imageForm.get('name')?.touched"
+          class="ws-form-error"
+        >
+          Le nom est déjà pris
+        </div>
+        <div
+          *ngIf="imageForm.get('name')?.errors?.['invalidName'] && imageForm.get('name')?.touched"
+          class="ws-form-error"
+        >
+          Le nom ne doit pas contenir d'accent ni de caractère spécial
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <input
+          #imageInput
+          class="form-control form-control-sm"
+          type="file"
+          accept="image/png"
+          data-bs-theme="dark"
+          (change)="onFileChange($event)"
+        />
+        <div
+          *ngIf="imageForm.get('image')?.hasError('invalidType')"
+          class="ws-form-error"
+        >
+          L'image n'est pas au format PNG
+        </div>
+        <div
+          *ngIf="
+            imageForm.get('image')?.hasError('required') &&
+            imageForm.get('image')?.touched
+          "
+          class="ws-form-error"
+        >
+          L'image est obligatoire
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ws-footer">
+    <button class="ws-btn" type="button" (click)="modal.close()">
+      Annuler
+    </button>
+    <button class="ws-btn ws-btn-success" type="submit">Ajouter</button>
+  </div>
+</form>

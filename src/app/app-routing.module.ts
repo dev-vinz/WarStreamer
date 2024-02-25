@@ -27,6 +27,14 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'images',
+    loadChildren: () =>
+      import('./features/images/images-routing.module').then(
+        (m) => m.ImagesRoutingModule
+      ),
+    canActivate: [authGuard],
+  },
+  {
     path: 'profile',
     loadChildren: () =>
       import('./features/profile/profile-routing.module').then(

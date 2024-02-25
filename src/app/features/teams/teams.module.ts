@@ -6,22 +6,23 @@ import { RouterModule } from '@angular/router';
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
 
 import { CoreModule } from '../../core/core.module';
+import { SharedModule } from '../../shared/shared.module';
 
 import { TeamsRoutingModule } from './teams-routing.module';
 import { TeamsComponent } from './teams.component';
 
 import { CardComponent } from './components/card/card.component';
+import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/confirm-delete-modal.component';
 import { PlaceholderCardComponent } from './components/placeholder-card/placeholder-card.component';
 import { TeamLogoModalComponent } from './components/team-logo-modal/team-logo-modal.component';
-import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/confirm-delete-modal.component';
 
 @NgModule({
   declarations: [
     CardComponent,
+    ConfirmDeleteModalComponent,
     PlaceholderCardComponent,
     TeamLogoModalComponent,
     TeamsComponent,
-    ConfirmDeleteModalComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +30,7 @@ import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/c
     NgxBootstrapIconsModule.pick(allIcons),
     ReactiveFormsModule,
     RouterModule,
+    SharedModule,
     TeamsRoutingModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

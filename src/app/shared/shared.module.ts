@@ -10,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
+import { TitleComponent } from './title/title.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
     FooterComponent,
     ScrollToTopComponent,
     NotFoundComponent,
+    TitleComponent,
   ],
   providers: [provideTranslocoScope({ scope: 'shared', alias: 't' })],
   imports: [
@@ -30,6 +32,7 @@ import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
     HeaderComponent,
     NotFoundComponent,
     ScrollToTopComponent,
+    TitleComponent,
   ],
 })
 export class SharedModule {}

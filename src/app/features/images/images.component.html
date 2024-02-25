@@ -1,0 +1,11 @@
+<div class="ws-container">
+  <app-title>Mes images</app-title>
+  <div class="ws-images">
+    <app-placeholder-card (imageAdded)="add($event)"></app-placeholder-card>
+    <app-card
+      *ngFor="let image of images; let i = index"
+      [image]="image"
+      (imageDeleted)="remove(i)"
+    ></app-card>
+  </div>
+</div>

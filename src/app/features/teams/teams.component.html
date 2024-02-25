@@ -1,9 +1,12 @@
-<div class="ws-container ws-teams">
-  <app-placeholder-card (teamAdded)="add($event)"></app-placeholder-card>
-  <app-card
-    *ngFor="let team of teams; let i = index"
-    [teamLogo]="team"
-    [customSelector]="getCustomSelector(team)"
-    (teamDeleted)="remove(i)"
-  ></app-card>
+<div class="ws-container">
+  <app-title>Mes équipes</app-title>
+  <div class="ws-teams">
+    <app-placeholder-card (teamAdded)="add($event)"></app-placeholder-card>
+    <app-card
+      *ngFor="let team of teams; let i = index"
+      [teamLogo]="team"
+      [customSelector]="getCustomSelector(team)"
+      (teamDeleted)="remove(i)"
+    ></app-card>
+  </div>
 </div>

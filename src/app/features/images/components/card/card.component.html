@@ -1,0 +1,14 @@
+<div class="ws-card">
+  <div class="ws-img-box">
+    <img class="ws-img" [src]="imageUrl" [alt]="imageName" />
+  </div>
+  <div class="ws-header">
+    <svg class="ws-arc" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 40 80 c 22 0 40 -22 40 -40 v 40 Z" />
+    </svg>
+    <button class="ws-btn ws-btn-danger" (click)="delete()">
+      <i-bs name="trash"></i-bs>
+    </button>
+    <h3 class="ws-title">{{ imageName }}</h3>
+  </div>
+</div>

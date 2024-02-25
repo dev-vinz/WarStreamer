@@ -69,7 +69,7 @@
       </div>
     </div>
     <div class="row mb-3">
-      <div class="col-md">
+      <div class="col-md mb-3">
         <label for="clanSearch" class="form-label">Rechercher un clan</label>
         <input
           #clanSearch
@@ -79,7 +79,7 @@
           autocomplete="off"
           (input)="onInputChange($event)"
         />
-        <div *ngIf="teamForm.get('tags')?.hasError('empty')" class="row mb-3">
+        <div *ngIf="teamForm.get('tags')?.hasError('empty')" class="row">
           <div class="col ws-form-error">
             Il faut enregistrer au moins un clan
           </div>
