@@ -1,0 +1,26 @@
+.ws-overlay {
+  width: 100%;
+
+  .ws-overlay-container {
+    position: relative;
+
+    margin: 0 auto;
+
+    background-color: var(--bgColorLight);
+    border: 1px solid rgba(var(--textColorRGB), 0.1);
+
+    overflow: hidden;
+
+    > * {
+      display: inline-block;
+      position: absolute;
+    }
+  }
+
+  .ws-color-button {
+    display: block;
+    position: relative;
+
+    margin: 1rem auto;
+  }
+}

@@ -1,9 +1,14 @@
+import { Expose } from 'class-transformer';
+
 export class Location2D {
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                          PROPERTIES                         *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+  @Expose({ name: 'x' })
   private _x: number;
+
+  @Expose({ name: 'y' })
   private _y: number;
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\

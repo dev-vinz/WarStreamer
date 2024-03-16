@@ -52,6 +52,7 @@
             "styles": [
               "src/styles.scss",
               "src/slider-styles.scss",
+              "src/color-picker-styles.scss",
               "node_modules/bootstrap/scss/bootstrap.scss"
             ],
             "scripts": [

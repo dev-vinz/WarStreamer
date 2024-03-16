@@ -1,0 +1,40 @@
+<div
+  #element
+  class="ws-player-details"
+  [ngClass]="{ 'ws-drag': draggable }"
+  cdkDrag
+  [cdkDragDisabled]="!draggable"
+  (cdkDragMoved)="onMoved($event)"
+>
+  <div *ngFor="let player of worldChampions" class="row align-items-center">
+    <div class="col">
+      <span class="ws-title">{{ player.name }}</span>
+    </div>
+    <div class="col ws-content">
+      <div>
+        <div *ngFor="let i of fullStars(player.stars)" class="ws-star">
+          <img
+            #star
+            src="assets/images/settings/full_star.png"
+            alt="full star"
+          />
+        </div>
+        <div *ngFor="let i of emptyStars(player.stars)" class="ws-star">
+          <img
+            #star
+            src="assets/images/settings/empty_star.png"
+            alt="empty star"
+          />
+        </div>
+      </div>
+      <div *ngIf="player.stars === 3" class="ws-details">
+        <i-bs #icon name="clock-fill"></i-bs>
+        <span>{{ player.time }}</span>
+      </div>
+      <div *ngIf="player.stars < 3" class="ws-details">
+        <span>{{ player.percent }}</span>
+        <i-bs #icon name="percent"></i-bs>
+      </div>
+    </div>
+  </div>
+</div>

@@ -103,6 +103,10 @@ export class Image {
     return this._isUsed;
   }
 
+  public get ratio(): number {
+    return this._width / this._height;
+  }
+
   /* * * * * * * * * * * * * * * *\
   |*           SETTERS           *|
   \* * * * * * * * * * * * * * * */

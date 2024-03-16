@@ -1,0 +1,61 @@
+.ws-heroes-equipments {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 1rem;
+
+  border: 1px dotted rgba(var(--textColorRGB), 0.3);
+
+  opacity: 0;
+
+  transition: 0.3s opacity ease;
+
+  .ws-title {
+    display: block;
+
+    width: 100%;
+
+    overflow: hidden;
+  }
+
+  .ws-content {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    .ws-equipments {
+      display: flex;
+
+      gap: 0.25rem;
+
+      .ws-img {
+        display: inline-block;
+
+        img {
+          width: 100%;
+          height: 100%;
+
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  &.ws-drag {
+    position: relative;
+
+    border: 2px solid rgba(var(--textColorRGB), 0.3);
+
+    cursor: move;
+    z-index: 10;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .ws-heroes-equipments {
+    padding: 0.5rem;
+  }
+}

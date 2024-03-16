@@ -41,10 +41,6 @@ export class Requests {
     return data.map(Requests._createAccountInstance);
   }
 
-  protected static _createBlobInstance(data: any): Blob {
-    throw new Error('Not implemented');
-  }
-
   protected static _createBooleanInstance(data: any): boolean {
     return new Boolean(data).valueOf();
   }
@@ -110,7 +106,12 @@ export class Requests {
   }
 
   protected static _createFontInstance(data: any): Font {
-    return new Font(data.id, data.displayName, data.fileName);
+    return new Font(
+      data.id,
+      data.displayName,
+      data.familyName,
+      Requests._convertBase64StringToFileFont(data.file)
+    );
   }
 
   protected static _createFontInstances(data: any[]): Font[] {
@@ -121,7 +122,7 @@ export class Requests {
     return new Image(
       data.userId,
       data.name,
-      Requests._convertBase64StringToFile(data.image, data.name),
+      Requests._convertBase64StringToFileImage(data.image, data.name),
       new Location2D(data.location.x, data.location.y),
       data.width,
       data.height,
@@ -148,51 +149,76 @@ export class Requests {
   }
 
   protected static _createOverlaySettingInstance(data: any): OverlaySetting {
-    return new OverlaySetting(
-      data.userId,
-      data.fontId,
-      data.textColor,
-      data.logoVisible,
-      data.logoSize,
-      new Location2D(data.logoLocation.x, data.logoLocation.y),
-      data.clanNameVisible,
-      data.clanNameSize,
-      new Location2D(data.clanNameLocation.x, data.clanNameLocation.y),
-      data.totalStarsVisible,
-      data.totalStarsSize,
-      new Location2D(data.totalStarsLocation.x, data.totalStarsLocation.y),
-      data.totalPercentageVisible,
-      data.totalPercentageSize,
-      new Location2D(
-        data.totalPercentageLocation.x,
-        data.totalPercentageLocation.y
-      ),
-      data.averageDurationVisible,
-      data.averageDurationSize,
-      new Location2D(
-        data.averageDurationLocation.x,
-        data.averageDurationLocation.y
-      ),
-      data.playerDetailsVisible,
-      data.playerDetailsSize,
-      new Location2D(
-        data.playerDetailsLocation.x,
-        data.playerDetailsLocation.y
-      ),
-      data.lastAttackToWinVisible,
-      data.lastAttackToWinSize,
-      new Location2D(
-        data.lastAttackToWinLocation.x,
-        data.lastAttackToWinLocation.y
-      ),
-      data.heroesEquipmentsVisible,
-      data.heroesEquipmentsSize,
-      new Location2D(
-        data.heroesEquipmentsLocation.x,
-        data.heroesEquipmentsLocation.y
-      ),
-      data.mirrorReflection
-    );
+    const setting = new OverlaySetting(data.userId, data.textColor);
+
+    setting.fontId = data.fontId;
+
+    setting.logoVisible = data.logoVisible;
+    setting.logoSize = data.logoSize;
+    setting.logoLocation = data.logoLocation
+      ? new Location2D(data.logoLocation.x, data.logoLocation.y)
+      : undefined;
+
+    setting.clanNameVisible = data.clanNameVisible;
+    setting.clanNameSize = data.clanNameSize;
+    setting.clanNameLocation = data.clanNameLocation
+      ? new Location2D(data.clanNameLocation.x, data.clanNameLocation.y)
+      : undefined;
+
+    setting.totalStarsVisible = data.totalStarsVisible;
+    setting.totalStarsSize = data.totalStarsSize;
+    setting.totalStarsLocation = data.totalStarsLocation
+      ? new Location2D(data.totalStarsLocation.x, data.totalStarsLocation.y)
+      : undefined;
+
+    setting.totalPercentageVisible = data.totalPercentageVisible;
+    setting.totalPercentageSize = data.totalPercentageSize;
+    setting.totalPercentageLocation = data.totalPercentageLocation
+      ? new Location2D(
+          data.totalPercentageLocation.x,
+          data.totalPercentageLocation.y
+        )
+      : undefined;
+
+    setting.averageDurationVisible = data.averageDurationVisible;
+    setting.averageDurationSize = data.averageDurationSize;
+    setting.averageDurationLocation = data.averageDurationLocation
+      ? new Location2D(
+          data.averageDurationLocation.x,
+          data.averageDurationLocation.y
+        )
+      : undefined;
+
+    setting.playerDetailsVisible = data.playerDetailsVisible;
+    setting.playerDetailsSize = data.playerDetailsSize;
+    setting.playerDetailsLocation = data.playerDetailsLocation
+      ? new Location2D(
+          data.playerDetailsLocation.x,
+          data.playerDetailsLocation.y
+        )
+      : undefined;
+
+    setting.lastAttackToWinVisible = data.lastAttackToWinVisible;
+    setting.lastAttackToWinSize = data.lastAttackToWinSize;
+    setting.lastAttackToWinLocation = data.lastAttackToWinLocation
+      ? new Location2D(
+          data.lastAttackToWinLocation.x,
+          data.lastAttackToWinLocation.y
+        )
+      : undefined;
+
+    setting.heroesEquipmentsVisible = data.heroesEquipmentsVisible;
+    setting.heroesEquipmentsSize = data.heroesEquipmentsSize;
+    setting.heroesEquipmentsLocation = data.heroesEquipmentsLocation
+      ? new Location2D(
+          data.heroesEquipmentsLocation.x,
+          data.heroesEquipmentsLocation.y
+        )
+      : undefined;
+
+    setting.mirrorReflection = data.mirrorReflection;
+
+    return setting;
   }
 
   protected static _createOverlaySettingInstances(
@@ -205,7 +231,7 @@ export class Requests {
     return new TeamLogo(
       data.teamName,
       data.userId,
-      Requests._convertBase64StringToFile(data.logo, data.teamName),
+      Requests._convertBase64StringToFileImage(data.logo, data.teamName),
       data.clanTags
     );
   }
@@ -256,7 +282,20 @@ export class Requests {
   |*              STATIC             *|
   \* * * * * * * * * * * * * * * * * */
 
-  private static _convertBase64StringToFile(
+  private static _convertBase64StringToFileFont(base64: string): File {
+    const byteString = atob(base64);
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    const blob = new Blob([ab], { type: 'application/font-woff' });
+    return new File([blob], 'font.woff', { type: 'application/font-woff' });
+  }
+
+  private static _convertBase64StringToFileImage(
     base64: string,
     name: string
   ): File {

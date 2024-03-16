@@ -1,0 +1,270 @@
+<!-- TODO: Language -->
+<div class="row">
+  <div class="col-md-7 mb-3">
+    <div class="ws-description">
+      <h4 class="ws-title">Informations des joueurs</h4>
+      <div class="ws-muted">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla beatae
+        quod exercitationem, nobis, omnis quis, voluptates dolore error hic
+        veritatis doloremque ipsa. Provident facilis maxime, quos sed numquam
+        nostrum velit?
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5 mb-3">
+    <div class="ws-radio-container">
+      <input
+        type="radio"
+        class="btn-check"
+        name="player-display"
+        id="player-off"
+        [value]="false"
+        [(ngModel)]="playerDetailsVisible"
+      />
+      <label class="ws-btn ws-btn-secondary" for="player-off">Masqué</label>
+      <input
+        type="radio"
+        class="btn-check"
+        name="player-display"
+        id="player-on"
+        [value]="true"
+        [(ngModel)]="playerDetailsVisible"
+      />
+      <label class="ws-btn ws-btn-secondary" for="player-on">Affiché</label>
+    </div>
+  </div>
+</div>
+<div
+  class="row ws-inputs-container"
+  [ngClass]="{ 'ws-inputs-container-active': playerDetailsVisible }"
+>
+  <div class="row">
+    <div class="col-sm mb-3">
+      <label for="player-width" class="form-label">Décalage horizontal</label>
+      <input
+        id="player-width"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="playerDetailsLocationX"
+        data-bs-theme="dark"
+      />
+    </div>
+    <div class="col-sm mb-3">
+      <label for="player-height" class="form-label">Décalage vertical</label>
+      <input
+        id="player-height"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="playerDetailsLocationY"
+        data-bs-theme="dark"
+      />
+    </div>
+    <div class="col-md mb-3">
+      <label for="player-size" class="form-label">Taille</label>
+      <div class="input-group" data-bs-theme="dark">
+        <input
+          id="player-size"
+          type="number"
+          class="form-control"
+          min="1"
+          max="200"
+          step="1"
+          [(ngModel)]="playerDetailsSize"
+        />
+        <span class="input-group-text">
+          <i-bs name="percent"></i-bs>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-7 mb-3">
+    <div class="ws-description">
+      <h4 class="ws-title">Équipements des héros</h4>
+      <div class="ws-muted">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla beatae
+        quod exercitationem, nobis, omnis quis, voluptates dolore error hic
+        veritatis doloremque ipsa. Provident facilis maxime, quos sed numquam
+        nostrum velit?
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5 mb-3">
+    <div class="ws-radio-container">
+      <input
+        type="radio"
+        class="btn-check"
+        name="equipments-display"
+        id="equipments-off"
+        [value]="false"
+        [(ngModel)]="heroesEquipmentsVisible"
+      />
+      <label class="ws-btn ws-btn-secondary" for="equipments-off">
+        Masqué
+      </label>
+      <input
+        type="radio"
+        class="btn-check"
+        name="equipments-display"
+        id="equipments-on"
+        [value]="true"
+        [(ngModel)]="heroesEquipmentsVisible"
+      />
+      <label class="ws-btn ws-btn-secondary" for="equipments-on">
+        Affiché
+      </label>
+    </div>
+  </div>
+</div>
+<div
+  class="row ws-inputs-container"
+  [ngClass]="{ 'ws-inputs-container-active': heroesEquipmentsActive }"
+>
+  <div class="row">
+    <div class="col-sm mb-3">
+      <label for="equipments-width" class="form-label">
+        Décalage horizontal
+      </label>
+      <input
+        id="equipments-width"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="heroesEquipmentsLocationX"
+        data-bs-theme="dark"
+      />
+    </div>
+    <div class="col-sm mb-3">
+      <label for="equipments-height" class="form-label">
+        Décalage vertical
+      </label>
+      <input
+        id="equipments-height"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="heroesEquipmentsLocationY"
+        data-bs-theme="dark"
+      />
+    </div>
+    <div class="col-md mb-3">
+      <label for="equipments-size" class="form-label">Taille</label>
+      <div class="input-group" data-bs-theme="dark">
+        <input
+          id="equipments-size"
+          type="number"
+          class="form-control"
+          min="1"
+          max="200"
+          step="1"
+          [(ngModel)]="heroesEquipmentsSize"
+        />
+        <span class="input-group-text">
+          <i-bs name="percent"></i-bs>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-7 mb-3">
+    <div class="ws-description">
+      <h4 class="ws-title">Dernière attaque victorieuse</h4>
+      <div class="ws-muted">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla beatae
+        quod exercitationem, nobis, omnis quis, voluptates dolore error hic
+        veritatis doloremque ipsa. Provident facilis maxime, quos sed numquam
+        nostrum velit?
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5 mb-3">
+    <div class="ws-radio-container">
+      <input
+        type="radio"
+        class="btn-check"
+        name="last-attack-display"
+        id="last-attack-off"
+        [value]="false"
+        [(ngModel)]="lastAttackToWinVisible"
+      />
+      <label class="ws-btn ws-btn-secondary" for="last-attack-off">
+        Masqué
+      </label>
+      <input
+        type="radio"
+        class="btn-check"
+        name="last-attack-display"
+        id="last-attack-on"
+        [value]="true"
+        [(ngModel)]="lastAttackToWinVisible"
+      />
+      <label class="ws-btn ws-btn-secondary" for="last-attack-on">
+        Affiché
+      </label>
+    </div>
+  </div>
+</div>
+<div
+  class="row ws-inputs-container"
+  [ngClass]="{ 'ws-inputs-container-active': lastAttackToWinVisible }"
+>
+  <div class="row">
+    <div class="col-sm mb-3">
+      <label for="last-attack-width" class="form-label">
+        Décalage horizontal
+      </label>
+      <input
+        id="last-attack-width"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="lastAttackToWinLocationX"
+        data-bs-theme="dark"
+      />
+    </div>
+    <div class="col-sm mb-3">
+      <label for="last-attack-height" class="form-label">
+        Décalage vertical
+      </label>
+      <input
+        id="last-attack-height"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="lastAttackToWinLocationY"
+        data-bs-theme="dark"
+      />
+    </div>
+    <div class="col-md mb-3">
+      <label for="last-attack-size" class="form-label">Taille</label>
+      <div class="input-group" data-bs-theme="dark">
+        <input
+          id="last-attack-size"
+          type="number"
+          class="form-control"
+          min="10"
+          max="100"
+          step="1"
+          [(ngModel)]="lastAttackToWinSize"
+        />
+        <span class="input-group-text">px</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-overlay-config
+  [heroesEquipmentsDraggable]="true"
+  [images]="images"
+  [lastAttackToWinDraggable]="true"
+  [overlaySetting]="overlaySetting"
+  [playerDetailsDraggable]="true"
+  [playerModeEnabled]="playerMode"
+  (settingModified)="modified = $event"
+></app-overlay-config>

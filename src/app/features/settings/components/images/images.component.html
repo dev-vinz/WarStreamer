@@ -1,0 +1,136 @@
+<!-- TODO: Language -->
+<div *ngFor="let image of images">
+  <div class="row">
+    <div class="col-md-7 mb-3">
+      <div class="ws-description">
+        <h4 class="ws-title">{{ image.element.name }}</h4>
+      </div>
+    </div>
+    <div class="col-md-5 mb-3">
+      <div class="ws-radio-container">
+        <input
+          type="radio"
+          class="btn-check"
+          name="{{ image.element.name }}-display"
+          id="{{ image.element.name }}-off"
+          [value]="false"
+          [(ngModel)]="image.element.isUsed"
+          (ngModelChange)="modified = true"
+        />
+        <label
+          class="ws-btn ws-btn-secondary"
+          for="{{ image.element.name }}-off"
+        >
+          Masqué
+        </label>
+        <input
+          type="radio"
+          class="btn-check"
+          name="{{ image.element.name }}-display"
+          id="{{ image.element.name }}-on"
+          [value]="true"
+          [(ngModel)]="image.element.isUsed"
+          (ngModelChange)="modified = true"
+        />
+        <label
+          class="ws-btn ws-btn-secondary"
+          for="{{ image.element.name }}-on"
+        >
+          Affiché
+        </label>
+      </div>
+    </div>
+  </div>
+  <div
+    class="row ws-inputs-container"
+    [ngClass]="{ 'ws-inputs-container-active': image.element.isUsed }"
+  >
+    <div class="row">
+      <div class="col-sm mb-3">
+        <label for="{{ image.element.name }}-position-x" class="form-label">
+          Décalage horizontal
+        </label>
+        <input
+          id="{{ image.element.name }}-position-x"
+          type="number"
+          class="form-control"
+          step="1"
+          [(ngModel)]="image.element.location.x"
+          (ngModelChange)="modified = true"
+          data-bs-theme="dark"
+        />
+      </div>
+      <div class="col-sm mb-3">
+        <label for="{{ image.element.name }}-position-y" class="form-label">
+          Décalage vertical
+        </label>
+        <input
+          id="{{ image.element.name }}-position-y"
+          type="number"
+          class="form-control"
+          step="1"
+          [(ngModel)]="image.element.location.y"
+          (ngModelChange)="modified = true"
+          data-bs-theme="dark"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-5 mb-3">
+        <label for="{{ image.element.name }}-width" class="form-label">
+          Largeur
+        </label>
+        <div class="input-group" data-bs-theme="dark">
+          <input
+            id="{{ image.element.name }}-width"
+            type="number"
+            class="form-control"
+            min="1"
+            step="1"
+            [(ngModel)]="image.element.width"
+            (ngModelChange)="onWidthChange(image)"
+          />
+          <span class="input-group-text">px</span>
+        </div>
+      </div>
+      <div class="col-sm-5 mb-3">
+        <label for="{{ image.element.name }}-height" class="form-label">
+          Hauteur
+        </label>
+        <div class="input-group" data-bs-theme="dark">
+          <input
+            id="{{ image.element.name }}-height"
+            type="number"
+            class="form-control"
+            min="1"
+            step="1"
+            [(ngModel)]="image.element.height"
+            (ngModelChange)="onHeightChange(image)"
+          />
+          <span class="input-group-text">px</span>
+        </div>
+      </div>
+      <div class="col-sm-2 mb-3 ws-ratio">
+        <input
+          id="{{ image.element.name }}-ratio"
+          type="checkbox"
+          class="btn-check"
+          [checked]="image.keepRatio"
+          [(ngModel)]="image.keepRatio"
+          (ngModelChange)="onRatioChange(image)"
+          data-bs-theme="dark"
+        />
+        <label class="ws-btn ws-btn-check" for="{{ image.element.name }}-ratio">
+          <i-bs name="lock-fill" width="30"></i-bs>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-overlay-config
+  [images]="images"
+  [imageDraggable]="true"
+  [overlaySetting]="overlaySetting"
+  (settingModified)="modified = $event"
+></app-overlay-config>

@@ -1,0 +1,10 @@
+<div
+  #element
+  class="ws-total-percentage"
+  [ngClass]="{ 'ws-drag': draggable }"
+  cdkDrag
+  [cdkDragDisabled]="!draggable"
+  (cdkDragMoved)="onMoved($event)"
+>
+  {{ percentage }}
+</div>

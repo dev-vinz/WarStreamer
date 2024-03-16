@@ -1,0 +1,36 @@
+<div
+  #element
+  class="ws-heroes-equipments"
+  [ngClass]="{ 'ws-drag': draggable }"
+  cdkDrag
+  [cdkDragDisabled]="!draggable"
+  (cdkDragMoved)="onMoved($event)"
+>
+  <div *ngFor="let player of worldChampions" class="row align-items-center">
+    <div class="col">
+      <span class="ws-title">{{ player.name }}</span>
+    </div>
+    <div class="col ws-content">
+      <div *ngIf="isArcherBarbarian" class="ws-equipments">
+        <div #equipment *ngFor="let bk of player.bk" class="ws-img">
+          <img [src]="bk" alt="Barbarian King Equipment" />
+        </div>
+      </div>
+      <div *ngIf="isArcherBarbarian" class="ws-equipments">
+        <div #equipment *ngFor="let aq of player.aq" class="ws-img">
+          <img [src]="aq" alt="Archer Queen Equipment" />
+        </div>
+      </div>
+      <div *ngIf="!isArcherBarbarian" class="ws-equipments">
+        <div #equipment *ngFor="let gw of player.gw" class="ws-img">
+          <img [src]="gw" alt="Grand Warden Equipment" />
+        </div>
+      </div>
+      <div *ngIf="!isArcherBarbarian" class="ws-equipments">
+        <div #equipment *ngFor="let rc of player.rc" class="ws-img">
+          <img [src]="rc" alt="Royal Champion Equipment" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div
+  #element
+  class="ws-last-attack"
+  [ngClass]="{ 'ws-drag': draggable }"
+  cdkDrag
+  [cdkDragDisabled]="!draggable"
+  (cdkDragMoved)="onMoved($event)"
+>
+  <!-- TODO: Language -->
+  <div class="ws-header">To win</div>
+  <div class="ws-content">
+    <div class="ws-col">
+      <div *ngFor="let i of fullStars" class="ws-star">
+        <img #star src="assets/images/settings/full_star.png" alt="full star" />
+      </div>
+      <div *ngFor="let i of emptyStars" class="ws-star">
+        <img
+          #star
+          src="assets/images/settings/empty_star.png"
+          alt="empty star"
+        />
+      </div>
+    </div>
+    <div class="ws-col ws-details">
+      <span>{{ percentage }}</span>
+      <i-bs #icon name="percent"></i-bs>
+    </div>
+    <div class="ws-col ws-details">
+      <i-bs #icon name="clock-fill"></i-bs>
+      <span>{{ time }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div
+  #element
+  class="ws-clan-name"
+  [ngClass]="{ 'ws-drag': draggable }"
+  cdkDrag
+  [cdkDragDisabled]="!draggable"
+  (cdkDragMoved)="onMoved($event)"
+>
+  {{ teamName }}
+</div>

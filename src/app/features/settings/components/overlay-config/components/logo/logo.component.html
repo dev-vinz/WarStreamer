@@ -1,0 +1,14 @@
+<div
+  #element
+  class="ws-logo"
+  [ngClass]="{ 'ws-drag': draggable }"
+  cdkDrag
+  [cdkDragDisabled]="!draggable"
+  (cdkDragMoved)="onMoved($event)"
+>
+  <img
+    class="ws-image"
+    src="assets/images/settings/clan_badge.png"
+    alt="Clan badge"
+  />
+</div>

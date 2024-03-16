@@ -1,0 +1,99 @@
+<!-- TODO: Language -->
+<div class="ws-modal">
+  <div class="ws-header">
+    <h4 class="ws-title">Sélection d'une couleur</h4>
+    <button class="ws-close" (click)="modal.dismiss()">
+      <i-bs name="x-lg"></i-bs>
+    </button>
+  </div>
+  <div class="ws-body">
+    <div class="row">
+      <div class="col-sm-7 mb-3 ws-picker-container">
+        <compact-picker
+          class="ws-settings-color-picker"
+          [control]="pickerControl"
+        ></compact-picker>
+      </div>
+      <div class="col-sm-5 mb-3 ws-color-container">
+        <button
+          *ngFor="let color of rainbowColors"
+          class="ws-color"
+          [style.backgroundColor]="color"
+          (click)="setColor(color)"
+        ></button>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <div
+          class="ws-color-selected"
+          [style.backgroundColor]="colorValue"
+        ></div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="hexInput" class="form-label">Hexadécimal</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i-bs name="hash"></i-bs>
+          </span>
+          <input
+            id="hexInput"
+            type="text"
+            class="form-control"
+            [(ngModel)]="hexValue"
+            data-bs-theme="dark"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm mb-3">
+        <label for="redInput" class="form-label">Rouge</label>
+        <input
+          id="redInput"
+          type="number"
+          class="form-control"
+          min="0"
+          max="255"
+          step="1"
+          [(ngModel)]="redValue"
+          data-bs-theme="dark"
+        />
+      </div>
+      <div class="col-sm mb-3">
+        <label for="greenInput" class="form-label">Vert</label>
+        <input
+          id="greenInput"
+          type="number"
+          class="form-control"
+          min="0"
+          max="255"
+          step="1"
+          [(ngModel)]="greenValue"
+          data-bs-theme="dark"
+        />
+      </div>
+      <div class="col-sm mb-3">
+        <label for="blueInput" class="form-label">Bleu</label>
+        <input
+          id="blueInput"
+          type="number"
+          class="form-control"
+          min="0"
+          max="255"
+          step="1"
+          [(ngModel)]="blueValue"
+          data-bs-theme="dark"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="ws-footer">
+    <button class="ws-btn" (click)="modal.close()">Fermer</button>
+    <button class="ws-btn ws-btn-primary" (click)="selectColor()">
+      Sélectionner
+    </button>
+  </div>
+</div>

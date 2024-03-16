@@ -24,13 +24,6 @@ export class FontRequests extends Requests {
     );
   }
 
-  public getFile(id: string): Request<Blob> {
-    return new GetRequest<Blob>(
-      this.url('fonts.get.file', encodeURIComponent(id)),
-      Requests._createBlobInstance
-    );
-  }
-
   /* * * * * * * * * * * * * * * *\
   |*             POST            *|
   \* * * * * * * * * * * * * * * */

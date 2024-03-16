@@ -1,0 +1,24 @@
+.ws-average-duration {
+  padding: 1rem;
+
+  border: 1px dotted rgba(var(--textColorRGB), 0.3);
+
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+
+  &.ws-drag {
+    position: relative;
+
+    border: 2px solid rgba(var(--textColorRGB), 0.3);
+
+    cursor: move;
+    z-index: 10;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .ws-average-duration {
+    padding: 0.5rem;
+  }
+}

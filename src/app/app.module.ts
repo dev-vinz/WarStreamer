@@ -17,6 +17,7 @@ import { DashboardModule } from './features/dashboard/dashboard.module';
 import { HomeModule } from './features/home/home.module';
 import { ImagesModule } from './features/images/images.module';
 import { ProfileModule } from './features/profile/profile.module';
+import { SettingsModule } from './features/settings/settings.module';
 import { TeamsModule } from './features/teams/teams.module';
 import { SharedModule } from './shared/shared.module';
 
@@ -33,13 +34,14 @@ register();
     CoreModule,
     DashboardModule,
     HomeModule,
+    HttpClientModule,
     ImagesModule,
     NgbModule,
     NgxBootstrapIconsModule.pick(allIcons),
     OAuthModule.forRoot(),
     ProfileModule,
+    SettingsModule,
     SharedModule,
-    HttpClientModule,
     TeamsModule,
     TranslocoRootModule,
   ],

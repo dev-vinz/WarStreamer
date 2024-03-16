@@ -1,0 +1,26 @@
+.ws-total-stars {
+  padding: 1rem;
+
+  border: 1px dotted rgba(var(--textColorRGB), 0.3);
+
+  font-weight: 800;
+
+  opacity: 0;
+
+  transform: opacity 0.3s ease;
+
+  &.ws-drag {
+    position: relative;
+
+    border: 2px solid rgba(var(--textColorRGB), 0.3);
+
+    cursor: move;
+    z-index: 10;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .ws-total-stars {
+    padding: 0.5rem;
+  }
+}

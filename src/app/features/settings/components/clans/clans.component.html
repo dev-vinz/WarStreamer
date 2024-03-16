@@ -1,0 +1,172 @@
+<!-- TODO: Language -->
+<div class="row">
+  <div class="col-md-7 mb-3">
+    <div class="ws-description">
+      <h4 class="ws-title">Logo</h4>
+      <div class="ws-muted">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla beatae
+        quod exercitationem, nobis, omnis quis, voluptates dolore error hic
+        veritatis doloremque ipsa. Provident facilis maxime, quos sed numquam
+        nostrum velit?
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5 mb-3">
+    <div class="ws-radio-container">
+      <input
+        type="radio"
+        class="btn-check"
+        name="logo-display"
+        id="logo-off"
+        [value]="false"
+        [(ngModel)]="logoVisible"
+      />
+      <label class="ws-btn ws-btn-secondary" for="logo-off">Masqué</label>
+      <input
+        type="radio"
+        class="btn-check"
+        name="logo-display"
+        id="logo-on"
+        [value]="true"
+        [(ngModel)]="logoVisible"
+      />
+      <label class="ws-btn ws-btn-secondary" for="logo-on">Affiché</label>
+    </div>
+  </div>
+</div>
+<div
+  class="row ws-inputs-container"
+  [ngClass]="{ 'ws-inputs-container-active': logoVisible }"
+>
+  <div class="row">
+    <div class="col-sm mb-3">
+      <label for="logo-width" class="form-label">Décalage horizontal</label>
+      <input
+        id="logo-width"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="logoLocationX"
+        data-bs-theme="dark"
+      />
+    </div>
+    <div class="col-sm mb-3">
+      <label for="logo-height" class="form-label">Décalage vertical</label>
+      <input
+        id="logo-height"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="logoLocationY"
+        data-bs-theme="dark"
+      />
+    </div>
+    <div class="col-md mb-3">
+      <label for="logo-size" class="form-label">Taille</label>
+      <div class="input-group" data-bs-theme="dark">
+        <input
+          id="logo-size"
+          type="number"
+          class="form-control"
+          min="1"
+          max="200"
+          step="1"
+          [(ngModel)]="logoSize"
+        />
+        <span class="input-group-text">
+          <i-bs name="percent"></i-bs>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-7 mb-3">
+    <div class="ws-description">
+      <h4 class="ws-title">Nom</h4>
+      <div class="ws-muted">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla beatae
+        quod exercitationem, nobis, omnis quis, voluptates dolore error hic
+        veritatis doloremque ipsa. Provident facilis maxime, quos sed numquam
+        nostrum velit?
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5 mb-3">
+    <div class="ws-radio-container">
+      <input
+        type="radio"
+        class="btn-check"
+        name="clan-name-display"
+        id="clan-name-off"
+        [value]="false"
+        [(ngModel)]="clanNameVisible"
+      />
+      <label class="ws-btn ws-btn-secondary" for="clan-name-off">Masqué</label>
+      <input
+        type="radio"
+        class="btn-check"
+        name="clan-name-display"
+        id="clan-name-on"
+        [value]="true"
+        [(ngModel)]="clanNameVisible"
+      />
+      <label class="ws-btn ws-btn-secondary" for="clan-name-on">Affiché</label>
+    </div>
+  </div>
+</div>
+<div
+  class="row ws-inputs-container"
+  [ngClass]="{ 'ws-inputs-container-active': clanNameVisible }"
+>
+  <div class="row">
+    <div class="col-sm mb-3">
+      <label for="clan-name-width" class="form-label">
+        Décalage horizontal
+      </label>
+      <input
+        id="clan-name-width"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="clanNameLocationX"
+        data-bs-theme="dark"
+      />
+    </div>
+    <div class="col-sm mb-3">
+      <label for="clan-name-height" class="form-label">Décalage vertical</label>
+      <input
+        id="clan-name-height"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="clanNameLocationY"
+        data-bs-theme="dark"
+      />
+    </div>
+    <div class="col-md mb-3">
+      <label for="clan-name-size" class="form-label">Taille</label>
+      <div class="input-group" data-bs-theme="dark">
+        <input
+          id="clan-name-size"
+          type="number"
+          class="form-control"
+          min="10"
+          max="100"
+          step="1"
+          [(ngModel)]="clanNameSize"
+        />
+        <span class="input-group-text">px</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-overlay-config
+  [clanNameDraggable]="true"
+  [images]="images"
+  [logoDraggable]="true"
+  [overlaySetting]="overlaySetting"
+  (settingModified)="modified = $event"
+></app-overlay-config>

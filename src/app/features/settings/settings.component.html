@@ -1,0 +1,82 @@
+<!-- TODO: Language -->
+<div *ngIf="processing" class="ws-loading"></div>
+<div class="ws-container">
+  <app-title>Ma configuration</app-title>
+  <div
+    *ngIf="modified"
+    class="alert alert-warning mb-4 d-flex flex-wrap gap-2 align-items-center justify-center"
+    role="alert"
+    data-bs-theme="dark"
+  >
+    <span>
+      <strong>ATTENTION !</strong> Vous avez des modifications non sauvegardées.
+    </span>
+    <div class="d-grid ms-auto">
+      <button class="ws-btn ws-btn-shiny ws-btn-secondary" (click)="save()">
+        Sauvegarder
+      </button>
+      <button class="ws-btn ws-btn-shiny ws-btn-danger" (click)="cancel()">
+        Annuler
+      </button>
+    </div>
+  </div>
+  <ul
+    ngbNav
+    #nav="ngbNav"
+    [activeId]="activeId"
+    class="ws-tabs nav-tabs nav-justified"
+  >
+    <li [ngbNavItem]="1">
+      <button ngbNavLink class="ws-nav-link">Général</button>
+      <ng-template ngbNavContent>
+        <app-general
+          [images]="images"
+          [overlaySetting]="setting"
+          [(modified)]="modified"
+        ></app-general>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <button ngbNavLink class="ws-nav-link">Clan</button>
+      <ng-template ngbNavContent>
+        <app-clans
+          [images]="images"
+          [overlaySetting]="setting"
+          [(modified)]="modified"
+        ></app-clans>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="3">
+      <button ngbNavLink class="ws-nav-link">Scores</button>
+      <ng-template ngbNavContent>
+        <app-scores
+          [images]="images"
+          [overlaySetting]="setting"
+          [(modified)]="modified"
+        ></app-scores>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="4">
+      <button ngbNavLink class="ws-nav-link">Détails</button>
+      <ng-template ngbNavContent>
+        <app-details
+          [images]="images"
+          [overlaySetting]="setting"
+          [(modified)]="modified"
+        ></app-details>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="5">
+      <button ngbNavLink class="ws-nav-link">Images</button>
+      <ng-template ngbNavContent>
+        <app-images
+          [images]="images"
+          [overlaySetting]="setting"
+          [(modified)]="modified"
+        ></app-images>
+      </ng-template>
+    </li>
+  </ul>
+
+  <div *ngIf="valid" [ngbNavOutlet]="nav" class="ws-content"></div>
+</div>

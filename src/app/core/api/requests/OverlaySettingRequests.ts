@@ -21,6 +21,13 @@ export class OverlaySettingRequests extends Requests {
     );
   }
 
+  public getDefaultById(id: string): Request<OverlaySetting> {
+    return new GetRequest<OverlaySetting>(
+      this.url('overlay.getDefaultById', id),
+      Requests._createOverlaySettingInstance
+    );
+  }
+
   public getImages(): Request<Image[]> {
     return new GetRequest<Image[]>(
       this.url('overlay.images'),

@@ -43,6 +43,14 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'settings',
+    loadChildren: () =>
+      import('./features/settings/settings-routing.module').then(
+        (m) => m.SettingsRoutingModule
+      ),
+    canActivate: [authGuard],
+  },
+  {
     path: 'teams',
     loadChildren: () =>
       import('./features/teams/teams-routing.module').then(

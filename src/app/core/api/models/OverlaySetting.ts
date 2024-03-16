@@ -95,72 +95,60 @@ export class OverlaySetting {
   |*                        CONSTRUCTORS                         *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-  constructor(
-    userId: string,
-    fontId: string,
-    textColor: string,
-    logoVisible: boolean,
-    logoSize: number,
-    logoLocation: Location2D,
-    clanNameVisible: boolean,
-    clanNameSize: number,
-    clanNameLocation: Location2D,
-    totalStarsVisible: boolean,
-    totalStarsSize: number,
-    totalStarsLocation: Location2D,
-    totalPercentageVisible: boolean,
-    totalPercentageSize: number,
-    totalPercentageLocation: Location2D,
-    averageDurationVisible: boolean,
-    averageDurationSize: number,
-    averageDurationLocation: Location2D,
-    playerDetailsVisible: boolean,
-    playerDetailsSize: number,
-    playerDetailsLocation: Location2D,
-    lastAttackToWinVisible: boolean,
-    lastAttackToWinSize: number,
-    lastAttackToWinLocation: Location2D,
-    heroesEquipmentsVisible: boolean,
-    heroesEquipmentsSize: number,
-    heroesEquipmentsLocation: Location2D,
-    mirrorReflection: boolean
-  ) {
+  constructor(userId: string, textColor: string) {
     // Inputs
     {
       this._userId = userId;
-      this._fontId = fontId;
       this._textColor = textColor;
-      this._logoVisible = logoVisible;
-      this._logoSize = logoSize;
-      this._logoLocation = logoLocation;
-      this._clanNameVisible = clanNameVisible;
-      this._clanNameSize = clanNameSize;
-      this._clanNameLocation = clanNameLocation;
-      this._totalStarsVisible = totalStarsVisible;
-      this._totalStarsSize = totalStarsSize;
-      this._totalStarsLocation = totalStarsLocation;
-      this._totalPercentageVisible = totalPercentageVisible;
-      this._totalPercentageSize = totalPercentageSize;
-      this._totalPercentageLocation = totalPercentageLocation;
-      this._averageDurationVisible = averageDurationVisible;
-      this._averageDurationSize = averageDurationSize;
-      this._averageDurationLocation = averageDurationLocation;
-      this._playerDetailsVisible = playerDetailsVisible;
-      this._playerDetailsSize = playerDetailsSize;
-      this._playerDetailsLocation = playerDetailsLocation;
-      this._lastAttackToWinVisible = lastAttackToWinVisible;
-      this._lastAttackToWinSize = lastAttackToWinSize;
-      this._lastAttackToWinLocation = lastAttackToWinLocation;
-      this._heroesEquipmentsVisible = heroesEquipmentsVisible;
-      this._heroesEquipmentsSize = heroesEquipmentsSize;
-      this._heroesEquipmentsLocation = heroesEquipmentsLocation;
-      this._mirrorReflection = mirrorReflection;
+    }
+
+    // Outputs
+    {
+      this._logoVisible = false;
+      this._clanNameVisible = false;
+      this._totalStarsVisible = false;
+      this._totalPercentageVisible = false;
+      this._averageDurationVisible = false;
+      this._playerDetailsVisible = false;
+      this._lastAttackToWinVisible = false;
+      this._heroesEquipmentsVisible = false;
+      this._mirrorReflection = false;
     }
   }
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                           PUBLIC                            *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+  public copyTo(overlaySetting: OverlaySetting): void {
+    overlaySetting.fontId = this.fontId;
+    overlaySetting.textColor = this.textColor;
+    overlaySetting.logoVisible = this.logoVisible;
+    overlaySetting.logoSize = this.logoSize;
+    overlaySetting.logoLocation = this.logoLocation;
+    overlaySetting.clanNameVisible = this.clanNameVisible;
+    overlaySetting.clanNameSize = this.clanNameSize;
+    overlaySetting.clanNameLocation = this.clanNameLocation;
+    overlaySetting.totalStarsVisible = this.totalStarsVisible;
+    overlaySetting.totalStarsSize = this.totalStarsSize;
+    overlaySetting.totalStarsLocation = this.totalStarsLocation;
+    overlaySetting.totalPercentageVisible = this.totalPercentageVisible;
+    overlaySetting.totalPercentageSize = this.totalPercentageSize;
+    overlaySetting.totalPercentageLocation = this.totalPercentageLocation;
+    overlaySetting.averageDurationVisible = this.averageDurationVisible;
+    overlaySetting.averageDurationSize = this.averageDurationSize;
+    overlaySetting.averageDurationLocation = this.averageDurationLocation;
+    overlaySetting.playerDetailsVisible = this.playerDetailsVisible;
+    overlaySetting.playerDetailsSize = this.playerDetailsSize;
+    overlaySetting.playerDetailsLocation = this.playerDetailsLocation;
+    overlaySetting.lastAttackToWinVisible = this.lastAttackToWinVisible;
+    overlaySetting.lastAttackToWinSize = this.lastAttackToWinSize;
+    overlaySetting.lastAttackToWinLocation = this.lastAttackToWinLocation;
+    overlaySetting.heroesEquipmentsVisible = this.heroesEquipmentsVisible;
+    overlaySetting.heroesEquipmentsSize = this.heroesEquipmentsSize;
+    overlaySetting.heroesEquipmentsLocation = this.heroesEquipmentsLocation;
+    overlaySetting.mirrorReflection = this.mirrorReflection;
+  }
 
   /* * * * * * * * * * * * * * * *\
   |*           GETTERS           *|

@@ -1,0 +1,10 @@
+<div
+  #element
+  class="ws-image"
+  [ngClass]="{ 'ws-drag': draggable }"
+  cdkDrag
+  [cdkDragDisabled]="!draggable"
+  (cdkDragMoved)="onMoved($event)"
+>
+  <img [src]="url" alt="Custom image" />
+</div>

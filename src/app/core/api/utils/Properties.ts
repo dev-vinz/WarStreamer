@@ -19,7 +19,6 @@ export class Properties {
 
     fonts: `${environment.apiUrl}/fonts`,
     'fonts.get': `${environment.apiUrl}/fonts/%s`,
-    'fonts.get.file': `${environment.apiUrl}/fonts/%s/file`,
 
     images: `${environment.apiUrl}/images`,
     'images.get': `${environment.apiUrl}/images/%s`,
@@ -28,6 +27,7 @@ export class Properties {
     'languages.get': `${environment.apiUrl}/languages/%s`,
 
     overlay: `${environment.apiUrl}/overlaysetting`,
+    'overlay.getDefaultById': `${environment.apiUrl}/overlaysetting/defaults/%s`,
     'overlay.images': `${environment.apiUrl}/overlaysetting/images`,
 
     teamlogos: `${environment.apiUrl}/teamlogos`,

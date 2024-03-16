@@ -5,24 +5,41 @@ export class Font {
 
   private _id: string;
   private _displayName: string;
-  private _fileName: string;
+  private _familyName: string;
+  private _file: File;
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                        CONSTRUCTORS                         *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-  constructor(id: string, displayName: string, fileName: string) {
+  constructor(id: string, displayName: string, familyName: string, file: File) {
     // Inputs
     {
       this._id = id;
       this._displayName = displayName;
-      this._fileName = fileName;
+      this._familyName = familyName;
+      this._file = file;
     }
   }
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                           PUBLIC                            *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+  public async generateFontSource(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(this._file);
+
+      reader.onload = (event) => {
+        resolve(event.target?.result as string);
+      };
+
+      reader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  }
 
   /* * * * * * * * * * * * * * * *\
   |*           GETTERS           *|
@@ -36,7 +53,11 @@ export class Font {
     return this._displayName;
   }
 
-  public get fileName(): string {
-    return this._fileName;
+  public get familyName(): string {
+    return this._familyName;
+  }
+
+  public get file(): File {
+    return this._file;
   }
 }

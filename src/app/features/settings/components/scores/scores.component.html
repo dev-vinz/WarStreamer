@@ -1,0 +1,253 @@
+<!-- TODO: Language -->
+<div class="row">
+  <div class="col-md-7 mb-3">
+    <div class="ws-description">
+      <h4 class="ws-title">Nombre d'étoiles</h4>
+      <div class="ws-muted">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla beatae
+        quod exercitationem, nobis, omnis quis, voluptates dolore error hic
+        veritatis doloremque ipsa. Provident facilis maxime, quos sed numquam
+        nostrum velit?
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5 mb-3">
+    <div class="ws-radio-container">
+      <input
+        type="radio"
+        class="btn-check"
+        name="stars-display"
+        id="stars-off"
+        [value]="false"
+        [(ngModel)]="totalStarsVisible"
+      />
+      <label class="ws-btn ws-btn-secondary" for="stars-off">Masqué</label>
+      <input
+        type="radio"
+        class="btn-check"
+        name="stars-display"
+        id="stars-on"
+        [value]="true"
+        [(ngModel)]="totalStarsVisible"
+      />
+      <label class="ws-btn ws-btn-secondary" for="stars-on">Affiché</label>
+    </div>
+  </div>
+</div>
+<div
+  class="row ws-inputs-container"
+  [ngClass]="{ 'ws-inputs-container-active': totalStarsVisible }"
+>
+  <div class="row">
+    <div class="col-sm mb-3">
+      <label for="stars-width" class="form-label">Décalage horizontal</label>
+      <input
+        id="stars-width"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="totalStarsLocationX"
+        data-bs-theme="dark"
+      />
+    </div>
+    <div class="col-sm mb-3">
+      <label for="stars-height" class="form-label">Décalage vertical</label>
+      <input
+        id="stars-height"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="totalStarsLocationY"
+        data-bs-theme="dark"
+      />
+    </div>
+    <div class="col-md mb-3">
+      <label for="stars-size" class="form-label">Taille</label>
+      <div class="input-group" data-bs-theme="dark">
+        <input
+          id="stars-size"
+          type="number"
+          class="form-control"
+          min="10"
+          max="100"
+          step="1"
+          [(ngModel)]="totalStarsSize"
+        />
+        <span class="input-group-text">px</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-7 mb-3">
+    <div class="ws-description">
+      <h4 class="ws-title">Moyenne de destruction</h4>
+      <div class="ws-muted">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla beatae
+        quod exercitationem, nobis, omnis quis, voluptates dolore error hic
+        veritatis doloremque ipsa. Provident facilis maxime, quos sed numquam
+        nostrum velit?
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5 mb-3">
+    <div class="ws-radio-container">
+      <input
+        type="radio"
+        class="btn-check"
+        name="percentage-display"
+        id="percentage-off"
+        [value]="false"
+        [(ngModel)]="totalPercentageVisible"
+      />
+      <label class="ws-btn ws-btn-secondary" for="percentage-off">Masqué</label>
+      <input
+        type="radio"
+        class="btn-check"
+        name="percentage-display"
+        id="percentage-on"
+        [value]="true"
+        [(ngModel)]="totalPercentageVisible"
+      />
+      <label class="ws-btn ws-btn-secondary" for="percentage-on">Affiché</label>
+    </div>
+  </div>
+</div>
+<div
+  class="row ws-inputs-container"
+  [ngClass]="{ 'ws-inputs-container-active': totalPercentageVisible }"
+>
+  <div class="row">
+    <div class="col-sm mb-3">
+      <label for="percentage-width" class="form-label">
+        Décalage horizontal
+      </label>
+      <input
+        id="percentage-width"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="totalPercentageLocationX"
+        data-bs-theme="dark"
+      />
+    </div>
+    <div class="col-sm mb-3">
+      <label for="percentage-height" class="form-label">
+        Décalage vertical
+      </label>
+      <input
+        id="percentage-height"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="totalPercentageLocationY"
+        data-bs-theme="dark"
+      />
+    </div>
+    <div class="col-md mb-3">
+      <label for="percentage-size" class="form-label">Taille</label>
+      <div class="input-group" data-bs-theme="dark">
+        <input
+          id="percentage-size"
+          type="number"
+          class="form-control"
+          min="10"
+          max="100"
+          step="1"
+          [(ngModel)]="totalPercentageSize"
+        />
+        <span class="input-group-text">px</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-7 mb-3">
+    <div class="ws-description">
+      <h4 class="ws-title">Durée moyenne des attaques</h4>
+      <div class="ws-muted">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla beatae
+        quod exercitationem, nobis, omnis quis, voluptates dolore error hic
+        veritatis doloremque ipsa. Provident facilis maxime, quos sed numquam
+        nostrum velit?
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5 mb-3">
+    <div class="ws-radio-container">
+      <input
+        type="radio"
+        class="btn-check"
+        name="duration-display"
+        id="duration-off"
+        [value]="false"
+        [(ngModel)]="averageDurationVisible"
+      />
+      <label class="ws-btn ws-btn-secondary" for="duration-off">Masqué</label>
+      <input
+        type="radio"
+        class="btn-check"
+        name="duration-display"
+        id="duration-on"
+        [value]="true"
+        [(ngModel)]="averageDurationVisible"
+      />
+      <label class="ws-btn ws-btn-secondary" for="duration-on">Affiché</label>
+    </div>
+  </div>
+</div>
+<div
+  class="row ws-inputs-container"
+  [ngClass]="{ 'ws-inputs-container-active': averageDurationVisible }"
+>
+  <div class="row">
+    <div class="col-sm mb-3">
+      <label for="duration-width" class="form-label">Décalage horizontal</label>
+      <input
+        id="duration-width"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="averageDurationLocationX"
+        data-bs-theme="dark"
+      />
+    </div>
+    <div class="col-sm mb-3">
+      <label for="duration-height" class="form-label">Décalage vertical</label>
+      <input
+        id="duration-height"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="averageDurationLocationY"
+        data-bs-theme="dark"
+      />
+    </div>
+    <div class="col-md mb-3">
+      <label for="duration-size" class="form-label">Taille</label>
+      <div class="input-group" data-bs-theme="dark">
+        <input
+          id="duration-size"
+          type="number"
+          class="form-control"
+          min="10"
+          max="100"
+          step="1"
+          [(ngModel)]="averageDurationSize"
+        />
+        <span class="input-group-text">px</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-overlay-config
+  [averageDurationDraggable]="true"
+  [overlaySetting]="overlaySetting"
+  [images]="images"
+  [totalPercentageDraggable]="true"
+  [totalStarsDraggable]="true"
+  (settingModified)="modified = $event"
+></app-overlay-config>

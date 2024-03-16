@@ -1,0 +1,80 @@
+<!-- TODO: Language -->
+<div class="ws-font-container">
+  <div class="ws-col">
+    <div class="row mb-3">
+      <label for="font" class="form-label">Police d'écriture</label>
+      <select id="font" class="form-select" (change)="onFontChange($event)">
+        <option *ngIf="!selectedFontFamily" value="" selected disabled>
+          Choisir une police
+        </option>
+        <option
+          *ngFor="let font of fonts"
+          [value]="font.id"
+          [selected]="font.id === fontId"
+        >
+          {{ font.displayName }}
+        </option>
+      </select>
+    </div>
+    <div class="row">
+      <button
+        class="ws-btn ws-btn-shiny ws-btn-secondary"
+        (click)="openColorPicker()"
+      >
+        Couleur du texte
+      </button>
+    </div>
+  </div>
+  <div
+    class="ws-col ws-lorem"
+    [style.color]="textColor"
+    [style.fontFamily]="selectedFontFamily"
+  >
+    <span class="mb-3">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae id harum
+      iusto eaque totam quaerat temporibus itaque ullam magni, architecto,
+      explicabo debitis odit corporis quia suscipit sequi nisi molestiae beatae.
+    </span>
+    <span>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</span>
+  </div>
+</div>
+<div class="ws-mirror-container">
+  <div class="ws-col">
+    <label class="form-label">Réflexion miroir</label>
+    <div class="form-check form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="mirrorReflection"
+        data-bs-theme="dark"
+        [(ngModel)]="mirrorReflection"
+      />
+      <label for="mirrorReflection" class="form-check-label">
+        {{ mirrorReflection ? "Activé" : "Désactivé" }}
+      </label>
+    </div>
+    <div class="ws-muted">
+      Lorsque cette option est activée, les informations et les scores du clan
+      adverse sont affichés avec un effet miroir.
+    </div>
+  </div>
+  <div class="ws-col">
+    <img
+      *ngIf="mirrorReflection"
+      src="assets/images/settings/mirror_display.png"
+      alt="Mirror display"
+      class="ws-mirror-img"
+    />
+    <img
+      *ngIf="!mirrorReflection"
+      src="assets/images/settings/duplicate_display.png"
+      alt="Duplicate display"
+      class="ws-mirror-img"
+    />
+  </div>
+</div>
+<app-overlay-config
+  [overlaySetting]="overlaySetting"
+  [images]="images"
+></app-overlay-config>

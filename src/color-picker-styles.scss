@@ -1,0 +1,17 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
+|*                           SETTINGS                          *|
+\* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+.ws-settings-color-picker {
+  background-color: transparent !important;
+
+  box-shadow: none !important;
+
+  .controls-row.saturation-hue {
+    padding-bottom: 0 !important;
+  }
+
+  .controls-row.presentation {
+    display: none !important;
+  }
+}

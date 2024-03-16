@@ -1,0 +1,27 @@
+<!-- TODO: Language -->
+<div class="ws-modal">
+  <div class="ws-header">
+    <h4 class="ws-title">Nouvelle configuration</h4>
+  </div>
+  <div class="ws-body">
+    <div class="ws-card ws-empty" (click)="create(-1)">Vide</div>
+    <div class="ws-card" (click)="create(0)">
+      <img
+        src="assets/images/settings/defaults/0.gif"
+        alt="Default setting 1"
+      />
+    </div>
+    <div class="ws-card" (click)="create(1)">
+      <img
+        src="assets/images/settings/defaults/1.png"
+        alt="Default setting 2"
+      />
+    </div>
+    <div class="ws-card" (click)="create(2)">
+      <img
+        src="assets/images/settings/defaults/2.png"
+        alt="Default setting 3"
+      />
+    </div>
+  </div>
+</div>
