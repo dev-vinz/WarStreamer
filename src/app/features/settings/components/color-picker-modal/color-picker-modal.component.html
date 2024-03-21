@@ -21,6 +21,13 @@
           [style.backgroundColor]="color"
           (click)="setColor(color)"
         ></button>
+        <button
+          *ngIf="isTransparent"
+          class="ws-color"
+          [ngClass]="{ 'ws-active': isTransparentSelected }"
+          [style.backgroundImage]="transparentUrl"
+          (click)="setTransparent()"
+        ></button>
       </div>
     </div>
     <div class="row mb-3">
@@ -28,6 +35,7 @@
         <div
           class="ws-color-selected"
           [style.backgroundColor]="colorValue"
+          [style.backgroundImage]="isTransparentSelected ? transparentUrl : ''"
         ></div>
       </div>
     </div>

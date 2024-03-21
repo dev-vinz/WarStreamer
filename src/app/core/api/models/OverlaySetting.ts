@@ -4,17 +4,33 @@ import { Location2D } from './Location2D';
 
 export class OverlaySetting {
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
+  |*                          CONSTANTS                          *|
+  \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+  public static readonly DEFAULT_WIDTH = 1280;
+  public static readonly DEFAULT_HEIGHT = 720;
+
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                          PROPERTIES                         *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
   @Expose({ name: 'userId' })
   private _userId: string;
 
+  @Expose({ name: 'width' })
+  private _width: number;
+
+  @Expose({ name: 'height' })
+  private _height: number;
+
   @Expose({ name: 'fontId' })
   private _fontId?: string;
 
   @Expose({ name: 'textColor' })
   private _textColor: string;
+
+  @Expose({ name: 'backgroundColor' })
+  private _backgroundColor?: string;
 
   @Expose({ name: 'logoVisible' })
   private _logoVisible: boolean;
@@ -99,6 +115,8 @@ export class OverlaySetting {
     // Inputs
     {
       this._userId = userId;
+      this._width = OverlaySetting.DEFAULT_WIDTH;
+      this._height = OverlaySetting.DEFAULT_HEIGHT;
       this._textColor = textColor;
     }
 
@@ -121,8 +139,11 @@ export class OverlaySetting {
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
   public copyTo(overlaySetting: OverlaySetting): void {
+    overlaySetting.width = this.width;
+    overlaySetting.height = this.height;
     overlaySetting.fontId = this.fontId;
     overlaySetting.textColor = this.textColor;
+    overlaySetting.backgroundColor = this.backgroundColor;
     overlaySetting.logoVisible = this.logoVisible;
     overlaySetting.logoSize = this.logoSize;
     overlaySetting.logoLocation = this.logoLocation;
@@ -158,12 +179,24 @@ export class OverlaySetting {
     return this._userId;
   }
 
+  public get width(): number {
+    return this._width;
+  }
+
+  public get height(): number {
+    return this._height;
+  }
+
   public get fontId(): string | undefined {
     return this._fontId;
   }
 
   public get textColor(): string {
     return this._textColor;
+  }
+
+  public get backgroundColor(): string | undefined {
+    return this._backgroundColor;
   }
 
   public get logoVisible(): boolean {
@@ -270,12 +303,24 @@ export class OverlaySetting {
   |*           SETTERS           *|
   \* * * * * * * * * * * * * * * */
 
+  public set width(value: number) {
+    this._width = value;
+  }
+
+  public set height(value: number) {
+    this._height = value;
+  }
+
   public set fontId(value: string | undefined) {
     this._fontId = value;
   }
 
   public set textColor(value: string) {
     this._textColor = value;
+  }
+
+  public set backgroundColor(value: string | undefined) {
+    this._backgroundColor = value;
   }
 
   public set logoVisible(value: boolean) {

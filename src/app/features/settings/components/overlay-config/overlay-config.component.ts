@@ -10,16 +10,9 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
-  inject,
 } from '@angular/core';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-import { take } from 'rxjs';
-
 import { WarStreamerService } from '../../../../core/api/warstreamer.service';
-
-import { ColorPickerModalComponent } from '../color-picker-modal/color-picker-modal.component';
 
 import { Font } from '../../../../core/api/models/Font';
 import { Image } from '../../../../core/api/models/Image';
@@ -45,10 +38,10 @@ export class OverlayConfigComponent
   |*                          CONSTANTS                          *|
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-  public static readonly DEFAULT_WIDTH = 1280 / 2;
-  public static readonly DEFAULT_HEIGHT = 720;
-
   private readonly _defaultInterval = 30000;
+
+  private readonly _textColorWhite = [230, 230, 230];
+  private readonly _textColorBlack = [33, 33, 33];
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                          PROPERTIES                         *|
@@ -57,8 +50,10 @@ export class OverlayConfigComponent
   private _detailsVisible: boolean = true;
   private _equipmentsVisible: boolean = true;
   private _fonts: Font[] = [];
-  private _modalService = inject(NgbModal);
   private _playerInterval?: NodeJS.Timeout;
+
+  private _defaultWidth: number = OverlaySetting.DEFAULT_WIDTH;
+  private _defaultHeight: number = OverlaySetting.DEFAULT_HEIGHT;
 
   @Input()
   public averageDurationDraggable: boolean = false;
@@ -131,6 +126,12 @@ export class OverlayConfigComponent
   }
 
   async ngOnInit(): Promise<void> {
+    // Set container size
+    if (this.overlaySetting) {
+      this._defaultWidth = Math.floor(this.overlaySetting.width / 2);
+      this._defaultHeight = this.overlaySetting.height;
+    }
+
     this._onPlayerModeChange();
     this._fonts = await this._apiService.fonts.getAll().execute();
     this._fonts.forEach((font) => this._createFontFaceRule(font));
@@ -144,30 +145,25 @@ export class OverlayConfigComponent
     this.settingModified.emit(event);
   }
 
-  public openColorPicker(): void {
-    const modalRef = this._modalService.open(ColorPickerModalComponent, {
-      centered: true,
-    });
-
-    modalRef.componentInstance.selectedColor = '#2f2f2f';
-
-    modalRef.closed.pipe(take(1)).subscribe((result) => {
-      if (result && this._container) {
-        this._container.style.backgroundColor = result;
-      }
-    });
-  }
-
   /* * * * * * * * * * * * * * * *\
   |*           GETTERS           *|
   \* * * * * * * * * * * * * * * */
 
+  public get backgroundColor(): string {
+    return this.overlaySetting?.backgroundColor ?? 'transparent';
+  }
+
+  public get borderColor(): string {
+    const color = this._getContrastColor(this._hexToRgb(this.backgroundColor));
+    return `rgba(${color.join(', ')}, 0.8)`;
+  }
+
   public get containerHeight(): number {
-    return this._containerRatio * OverlayConfigComponent.DEFAULT_HEIGHT;
+    return this._containerRatio * this._height;
   }
 
   public get containerWidth(): number {
-    return Math.min(this._elementWidth, OverlayConfigComponent.DEFAULT_WIDTH);
+    return Math.min(this._elementWidth, this._width);
   }
 
   public get detailsVisible(): boolean {
@@ -321,6 +317,23 @@ export class OverlayConfigComponent
     document.head.appendChild(fontFace);
   }
 
+  private _getContrastColor(rgbColor: number[]): number[] {
+    const [r, g, b] = rgbColor;
+
+    const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+
+    return yiq >= 128 ? this._textColorBlack : this._textColorWhite;
+  }
+
+  private _hexToRgb(hex: string): number[] {
+    const hexValue = hex.replace('#', '');
+    const r = parseInt(hexValue.substring(0, 2), 16);
+    const g = parseInt(hexValue.substring(2, 4), 16);
+    const b = parseInt(hexValue.substring(4, 6), 16);
+
+    return [r, g, b];
+  }
+
   private _onPlayerModeChange(): void {
     this._setPlayerMode();
 
@@ -369,19 +382,19 @@ export class OverlayConfigComponent
   |*           GETTERS           *|
   \* * * * * * * * * * * * * * * */
 
-  private get _container(): HTMLDivElement | undefined {
-    return this._overlayElement?.nativeElement
-      .lastElementChild as HTMLDivElement;
-  }
-
   private get _containerRatio(): number {
-    return this.containerWidth / OverlayConfigComponent.DEFAULT_WIDTH;
+    return this.containerWidth / this._width;
   }
 
   private get _elementWidth(): number {
-    return (
-      this._overlayElement?.nativeElement.clientWidth ||
-      OverlayConfigComponent.DEFAULT_WIDTH
-    );
+    return this._overlayElement?.nativeElement.clientWidth || this._width;
+  }
+
+  private get _height(): number {
+    return this.overlaySetting?.height ?? this._defaultHeight;
+  }
+
+  private get _width(): number {
+    return Math.floor((this.overlaySetting?.width ?? this._defaultWidth) / 2);
   }
 }

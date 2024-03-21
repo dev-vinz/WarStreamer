@@ -81,21 +81,33 @@ export class GeneralComponent implements OnInit {
     }
   }
 
-  public openColorPicker(): void {
+  public openColorPicker(target: 'text' | 'background'): void {
     const modalRef = this._modalService.open(ColorPickerModalComponent, {
       centered: true,
     });
 
-    modalRef.componentInstance.selectedColor = this.textColor;
+    const colorInjected =
+      target === 'text' ? this.textColor : this.backgroundColor;
+
+    modalRef.componentInstance.selectedColor = colorInjected;
+    modalRef.componentInstance.isTransparent = target === 'background';
 
     modalRef.closed.pipe(take(1)).subscribe((color) => {
-      if (
-        (color as string) &&
-        this.overlaySetting &&
-        this.overlaySetting.textColor !== color
-      ) {
-        this.overlaySetting.textColor = color as string;
-        this.modified = true;
+      if (this.overlaySetting) {
+        if (
+          target === 'text' &&
+          (color as string) &&
+          this.overlaySetting.textColor !== color
+        ) {
+          this.overlaySetting.textColor = color;
+          this.modified = true;
+        } else if (
+          target === 'background' &&
+          this.overlaySetting.backgroundColor !== color
+        ) {
+          this.overlaySetting.backgroundColor = color;
+          this.modified = true;
+        }
       }
     });
   }
@@ -104,12 +116,20 @@ export class GeneralComponent implements OnInit {
   |*           GETTERS           *|
   \* * * * * * * * * * * * * * * */
 
+  public get backgroundColor(): string | undefined {
+    return this.overlaySetting?.backgroundColor;
+  }
+
   public get fontId(): string | undefined {
     return this.overlaySetting?.fontId;
   }
 
   public get fonts(): Font[] {
     return this._fonts;
+  }
+
+  public get height(): number {
+    return this.overlaySetting?.height ?? 0;
   }
 
   public get mirrorReflection(): boolean {
@@ -125,9 +145,20 @@ export class GeneralComponent implements OnInit {
     return this.overlaySetting?.textColor ?? '';
   }
 
+  public get width(): number {
+    return this.overlaySetting?.width ?? 0;
+  }
+
   /* * * * * * * * * * * * * * * *\
   |*           SETTERS           *|
   \* * * * * * * * * * * * * * * */
+
+  public set height(value: number) {
+    if (this.overlaySetting) {
+      this.overlaySetting.height = value;
+      this.modified = true;
+    }
+  }
 
   public set mirrorReflection(value: boolean) {
     if (this.overlaySetting) {
@@ -139,6 +170,13 @@ export class GeneralComponent implements OnInit {
   @Input()
   public set modified(value: boolean) {
     this.modifiedChange.emit(value);
+  }
+
+  public set width(value: number) {
+    if (this.overlaySetting) {
+      this.overlaySetting.width = value;
+      this.modified = true;
+    }
   }
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\

@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -31,7 +32,8 @@ export class WelcomeModalComponent {
 
   constructor(
     private _apiService: WarStreamerService,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _router: Router
   ) {}
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
@@ -53,10 +55,17 @@ export class WelcomeModalComponent {
     } catch (error) {
       // Do nothing, use an empty overlay
     } finally {
-      await this._apiService.overlaySetting.add(defaultOverlay).execute();
+      defaultOverlay = await this._apiService.overlaySetting
+        .add(defaultOverlay)
+        .execute();
     }
 
     this._modal.close(defaultOverlay);
+  }
+
+  public close(): void {
+    this._router.navigate(['/dashboard']);
+    this._modal.close();
   }
 
   /* * * * * * * * * * * * * * * *\

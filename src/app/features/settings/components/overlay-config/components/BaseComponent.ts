@@ -23,6 +23,9 @@ export abstract class BaseComponent implements AfterViewInit {
   protected _location: Location2D = new Location2D(0, 0);
 
   @Input()
+  public borderColor: string = 'transparent';
+
+  @Input()
   public container?: HTMLDivElement;
 
   @Input()
@@ -132,6 +135,12 @@ export abstract class BaseComponent implements AfterViewInit {
         this._elementRef.nativeElement,
         'transform',
         this._transform
+      );
+
+      this._renderer.setStyle(
+        this._elementRef.nativeElement,
+        'border-color',
+        this.borderColor
       );
 
       this._renderer.setStyle(this._elementRef.nativeElement, 'opacity', '1');

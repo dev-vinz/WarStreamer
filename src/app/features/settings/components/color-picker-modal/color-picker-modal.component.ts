@@ -20,9 +20,13 @@ export class ColorPickerModalComponent implements OnInit {
 
   private _modal = inject(NgbActiveModal);
   private _pickerControl: ColorPickerControl;
+  private _transparentSelected: boolean = false;
 
   @Input()
   public selectedColor: string | undefined;
+
+  @Input()
+  public isTransparent: boolean = false;
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
   |*                        CONSTRUCTORS                         *|
@@ -35,7 +39,12 @@ export class ColorPickerModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._pickerControl.setValueFrom(this.selectedColor ?? ColorsTable.white);
+    if (this.isTransparent && !this.selectedColor) {
+      this._transparentSelected = true;
+      this._pickerControl.setValueFrom(ColorsTable.transparent);
+    } else {
+      this._pickerControl.setValueFrom(this.selectedColor ?? ColorsTable.white);
+    }
   }
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
@@ -43,11 +52,21 @@ export class ColorPickerModalComponent implements OnInit {
   \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
   public selectColor(): void {
-    this._modal.close(this._pickerControl.value.toHexString());
+    if (this._transparentSelected) {
+      this._modal.close(undefined);
+    } else {
+      this._modal.close(this._pickerControl.value.toHexString());
+    }
   }
 
   public setColor(color: string): void {
     this._pickerControl.setValueFrom(color);
+    this._transparentSelected = false;
+  }
+
+  public setTransparent(): void {
+    this._pickerControl.setValueFrom(ColorsTable.transparent);
+    this._transparentSelected = true;
   }
 
   /* * * * * * * * * * * * * * * *\
@@ -70,6 +89,10 @@ export class ColorPickerModalComponent implements OnInit {
     return this._pickerControl.value.toHexString().slice(1);
   }
 
+  public get isTransparentSelected(): boolean {
+    return this._transparentSelected;
+  }
+
   public get modal(): NgbActiveModal {
     return this._modal;
   }
@@ -83,10 +106,16 @@ export class ColorPickerModalComponent implements OnInit {
   }
 
   public get rainbowColors(): string[] {
+    const length = this.isTransparent ? 11 : 12;
+
     return Array.from(
-      { length: 12 },
+      { length },
       (_, index) => `hsl(${index * 30}, 100%, 50%)`
     ).map((hsl) => Color.from(hsl).toHexString());
+  }
+
+  public get transparentUrl(): string {
+    return "url('assets/images/settings/transparent.jpg')";
   }
 
   /* * * * * * * * * * * * * * * *\

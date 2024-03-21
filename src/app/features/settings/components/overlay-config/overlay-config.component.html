@@ -1,18 +1,15 @@
 <!-- TODO: Language -->
 <div #overlayConfig class="ws-overlay">
-  <button
-    class="ws-btn ws-btn-shiny ws-color-button"
-    (click)="openColorPicker()"
-  >
-    Changer la couleur de fond
-  </button>
   <div
     class="ws-overlay-container"
     [style.width.px]="containerWidth"
     [style.height.px]="containerHeight"
+    [style.backgroundColor]="backgroundColor"
+    [style.borderColor]="borderColor"
   >
     <app-logo
       *ngIf="isLogo"
+      [borderColor]="borderColor"
       [draggable]="logoDraggable"
       [(locationX)]="logoLocation.x"
       [(locationY)]="logoLocation.y"
@@ -23,6 +20,7 @@
     </app-logo>
     <app-clan-name
       *ngIf="isClanName"
+      [borderColor]="borderColor"
       [color]="textColor"
       [font]="font"
       [draggable]="clanNameDraggable"
@@ -34,6 +32,7 @@
     ></app-clan-name>
     <app-stars
       *ngIf="isTotalStars"
+      [borderColor]="borderColor"
       [color]="textColor"
       [font]="font"
       [draggable]="totalStarsDraggable"
@@ -45,6 +44,7 @@
     ></app-stars>
     <app-percentage
       *ngIf="isTotalPercentage"
+      [borderColor]="borderColor"
       [color]="textColor"
       [font]="font"
       [draggable]="totalPercentageDraggable"
@@ -56,6 +56,7 @@
     ></app-percentage>
     <app-average
       *ngIf="isAverageDuration"
+      [borderColor]="borderColor"
       [color]="textColor"
       [font]="font"
       [draggable]="averageDurationDraggable"
@@ -67,6 +68,7 @@
     ></app-average>
     <app-players
       *ngIf="isPlayerDetails && detailsVisible"
+      [borderColor]="borderColor"
       [color]="textColor"
       [font]="font"
       [draggable]="playerDetailsDraggable"
@@ -78,6 +80,7 @@
     ></app-players>
     <app-equipments
       *ngIf="isHeroesEquipments && equipmentsVisible"
+      [borderColor]="borderColor"
       [color]="textColor"
       [font]="font"
       [draggable]="heroesEquipmentsDraggable && !isPlayerDetails"
@@ -89,6 +92,7 @@
     ></app-equipments>
     <app-last-attack
       *ngIf="isLastAttackToWin"
+      [borderColor]="borderColor"
       [color]="textColor"
       [font]="font"
       [draggable]="lastAttackToWinDraggable"
@@ -101,6 +105,7 @@
     <ng-container *ngFor="let image of images">
       <app-image
         *ngIf="image.element.isUsed"
+        [borderColor]="borderColor"
         [draggable]="imageDraggable"
         [height]="image.element.height"
         [(locationX)]="image.element.location.x"

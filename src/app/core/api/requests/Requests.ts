@@ -151,7 +151,10 @@ export class Requests {
   protected static _createOverlaySettingInstance(data: any): OverlaySetting {
     const setting = new OverlaySetting(data.userId, data.textColor);
 
+    setting.width = data.width;
+    setting.height = data.height;
     setting.fontId = data.fontId;
+    setting.backgroundColor = data.backgroundColor;
 
     setting.logoVisible = data.logoVisible;
     setting.logoSize = data.logoSize;

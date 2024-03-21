@@ -16,17 +16,24 @@
         </option>
       </select>
     </div>
-    <div class="row">
+    <div class="row ws-row">
       <button
         class="ws-btn ws-btn-shiny ws-btn-secondary"
-        (click)="openColorPicker()"
+        (click)="openColorPicker('text')"
       >
         Couleur du texte
+      </button>
+      <button
+        class="ws-btn ws-btn-shiny ws-btn-secondary"
+        (click)="openColorPicker('background')"
+      >
+        Couleur de fond
       </button>
     </div>
   </div>
   <div
     class="ws-col ws-lorem"
+    [style.backgroundColor]="backgroundColor"
     [style.color]="textColor"
     [style.fontFamily]="selectedFontFamily"
   >
@@ -36,6 +43,34 @@
       explicabo debitis odit corporis quia suscipit sequi nisi molestiae beatae.
     </span>
     <span>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</span>
+  </div>
+</div>
+<div class="ws-general-container">
+  <div class="ws-col mb-3">
+    <label for="width" class="form-label">Largeur</label>
+    <div class="input-group" data-bs-theme="dark">
+      <input
+        id="width"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="width"
+      />
+      <span class="input-group-text">px</span>
+    </div>
+  </div>
+  <div class="ws-col mb-3">
+    <label for="height" class="form-label">Hauteur</label>
+    <div class="input-group" data-bs-theme="dark">
+      <input
+        id="height"
+        type="number"
+        class="form-control"
+        step="1"
+        [(ngModel)]="height"
+      />
+      <span class="input-group-text">px</span>
+    </div>
   </div>
 </div>
 <div class="ws-mirror-container">
